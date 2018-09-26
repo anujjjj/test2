@@ -18,7 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Login
@@ -39,8 +39,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());		
+		// TODO Auto-generated method stub				
 	}
 
 	/**
@@ -48,8 +47,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+				
 		String un=request.getParameter("username");
 		String pw=request.getParameter("password");
 		
@@ -67,12 +65,14 @@ public class Login extends HttpServlet {
 		ps.setString(2, pw);
  
 		ResultSet rs = ps.executeQuery();
+		
  
 		while (rs.next()) {
 //			response.sendRedirect("success.html");
 //			response.getWriter().append("Logged In").append(request.getContextPath());
-			response.sendRedirect("success.html");
-			
+			HttpSession session = request.getSession(true);	    
+          session.setAttribute("currentSessionUser",un); 
+			response.sendRedirect("dashboard.html");			
 			return;
 		}
 		response.sendRedirect("error.html");
