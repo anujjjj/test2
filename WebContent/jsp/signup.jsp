@@ -50,7 +50,7 @@
                         <h3 class="panel-title">SIGNUP</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" action="Login" method="post">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="First Name" name="fname" type="text" autofocus>

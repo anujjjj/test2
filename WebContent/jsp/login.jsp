@@ -52,7 +52,7 @@
                 response.sendRedirect("dashboard.html");    
             }
             else{
-                 out.println("You have already been logged out <a href=\"login.jsp\">Back</a>");
+                 //out.println("You have already been logged out <a href=\"login.jsp\">Back</a>");
             }
         %>
    <center><label class="title">PIConnecT</label></center>
@@ -84,7 +84,7 @@
                                 <input type="submit" class="btn btn-lg btn-info btn-block" value="Login">
                                 <div >
                                     	<p></p>
-                                        <a href="signup.html">New User ?</a>                                   
+                                        <a href="signup.jsp">New User ?</a>                                   
                                 </div>
                             </fieldset>
                         </form>
