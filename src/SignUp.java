@@ -1,16 +1,9 @@
 
-
-//import java.io.IOException;
-//import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
@@ -22,16 +15,16 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class SignUp
  */
-@WebServlet("/jsp/Login")
-public class Login extends HttpServlet {
+@WebServlet("/jsp/SignUp")
+public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public SignUp() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +33,8 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub				
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -48,47 +42,48 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-				
+		//doGet(request, response);
 		String un=request.getParameter("username");
 		String pw=request.getParameter("password");
-		
-		// Connect to mysql and verify username password
+		String email=request.getParameter("email");
+		String phone=request.getParameter("phone");
+		String eno=request.getParameter("eno");
+		String lname=request.getParameter("lname"); 
+		String CandidateId; 
+		ResultSet rs = null;
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		 // loads driver
+	
+		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "messi"); // gets a new connection
 		
-		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "messi"); // gets a new connection
+		//userName,pass from student where userName=? and pass=?
+		String sql="insert into User(id,email,password,phone,first_name,last_name)" + "values(?,?,?,?,?,?)";
+		PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		
- 
-		PreparedStatement ps = c.prepareStatement("select userName,pass from student where userName=? and pass=?");
 		ps.setString(1, un);
-		ps.setString(2, pw);
- 
-		ResultSet rs = ps.executeQuery();
+		ps.setString(3, pw);
+		ps.setString(2, email);
+		ps.setString(4, phone);
+		ps.setString(5, eno);
+		ps.setString(6, lname);
+				
+		int rowAffected = ps.executeUpdate();
+        if(rowAffected == 1)
+        {
+            // get candidate id
+            rs = ps.getGeneratedKeys();
+            if(rs.next())
+                candidateId = rs.getInt(1);
+
+        }
 		
- 
-		while (rs.next()) {
-//			response.sendRedirect("success.html");
-//			response.getWriter().append("Logged In").append(request.getContextPath());
-			HttpSession session = request.getSession(true);	    
-			session.setAttribute("username",un); 
-			response.sendRedirect("dashboard.jsp");			
-			return;
-		}
-		
-		//response.sendRedirect("error.html");
-		HttpSession session = request.getSession(true);	
-		session.invalidate();
-        request.setAttribute("errorMessage", "Invalid user or password");
-        RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
-        rd.forward(request, response); 
-		return;
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block				
 			e.printStackTrace();
-		}	    
-	        
+		}
+		
 	}
 
 }

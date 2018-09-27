@@ -37,6 +37,22 @@
     
 <body>
 
+	<% 
+	response.setHeader("Cache-Control","no-cache");
+    response.setHeader("Cache-Control","no-store");
+    response.setDateHeader("Expires", 0);
+    response.setHeader("Pragma","no-cache");
+	String username=(String)session.getAttribute("username");
+    if(username==null)
+    {
+        
+    	response.sendRedirect("login.jsp");
+    }
+    else {
+    	out.println(username+" welcome back");
+    }
+	%>
+
     <div id="wrapper">
 
         <!-- Navigation -->

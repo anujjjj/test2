@@ -47,12 +47,11 @@
 
             String username=(String)session.getAttribute("username");
             if(username!=null)
-            {
-                out.println(username+" welcome back");
-                response.sendRedirect("dashboard.html");    
+            {                
+                response.sendRedirect("dashboard.jsp");    
             }
             else{
-                 //out.println("You have already been logged out <a href=\"login.jsp\">Back</a>");
+                 //`out.println("You have already been logged out <a href=\"login.jsp\">Back</a>");
             }
         %>
    <center><label class="title">PIConnecT</label></center>
