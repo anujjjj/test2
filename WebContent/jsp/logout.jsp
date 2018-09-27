@@ -17,7 +17,7 @@
     session.invalidate();
 
     out.println("You have been logged out <a href=\"login.jsp\">Login</a>");
-    
+    response.sendRedirect("login.jsp");
 %> 
     </BODY>
 </HTML>
