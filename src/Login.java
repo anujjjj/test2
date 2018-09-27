@@ -19,11 +19,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.RequestDispatcher;
 
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
+@WebServlet("/jsp/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -71,19 +72,22 @@ public class Login extends HttpServlet {
 //			response.sendRedirect("success.html");
 //			response.getWriter().append("Logged In").append(request.getContextPath());
 			HttpSession session = request.getSession(true);	    
-          session.setAttribute("currentSessionUser",un); 
+			session.setAttribute("username",un); 
 			response.sendRedirect("dashboard.html");			
 			return;
 		}
-		response.sendRedirect("error.html");
+		
+		//response.sendRedirect("error.html");
+		HttpSession session = request.getSession(true);	
+		session.invalidate();
+        request.setAttribute("errorMessage", "Invalid user or password");
+        RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
+        rd.forward(request, response); 
 		return;
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Successasdasdasdasdas");
+			// TODO Auto-generated catch block				
 			e.printStackTrace();
-		}		
-	 
-	    
+		}	    
 	        
 	}
 

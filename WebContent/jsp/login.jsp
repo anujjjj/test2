@@ -14,21 +14,21 @@
     <style>
        body
        { 
-         background-image:url('../photos/login_bg.jpg');
+         background-image:url("../photos/login_bg.jpg");
        }
     </style>
 
     <!-- Bootstrap Core CSS -->
-    <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="./vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="../vendor/metisMenu/metisMenu.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="./vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +38,23 @@
 </head>
 
 <body>
+		<%
+            
+            response.setHeader("Cache-Control","no-cache");
+            response.setHeader("Cache-Control","no-store");
+            response.setDateHeader("Expires", 0);
+            response.setHeader("Pragma","no-cache");
 
+            String username=(String)session.getAttribute("username");
+            if(username!=null)
+            {
+                out.println(username+" welcome back");
+                response.sendRedirect("dashboard.html");    
+            }
+            else{
+                 out.println("You have already been logged out <a href=\"login.jsp\">Back</a>");
+            }
+        %>
    <center><label class="title">PIConnecT</label></center>
 
     <div class="container">
@@ -51,6 +67,7 @@
                     <div class="panel-body">
                         <form role="form" action="Login" method="post">
                             <fieldset>
+                            	<h2><%=request.getAttribute("errorMessage") %></h2>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus>
                                 </div>
@@ -66,9 +83,8 @@
                                 <!--  <a href="index.html" class="btn btn-lg btn-info btn-block">Login</a>-->
                                 <input type="submit" class="btn btn-lg btn-info btn-block" value="Login">
                                 <div >
-                                    
-                                        <a href="signup.html">New User ?</a>
-                                   
+                                    	<p></p>
+                                        <a href="signup.html">New User ?</a>                                   
                                 </div>
                             </fieldset>
                         </form>
@@ -84,16 +100,17 @@
     
 
 
-    <!-- jQuery <script src="./vendor/jquery/jquery.min.js"></script> -->
-    
+    <!-- jQuery  -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Metis Menu Plugin JavaScript     <script src="../vendor/metisMenu/metisMenu.min.js"></script> -->
+    <!-- Metis Menu Plugin JavaScript      -->
+	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-
-    <!-- Custom Theme JavaScript     <script src="../dist/js/sb-admin-2.js"></script> -->
+    <!-- Custom Theme JavaScript    -->
+      <script src="../dist/js/sb-admin-2.js"></script>
 
 
 </body>
