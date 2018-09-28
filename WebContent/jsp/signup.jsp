@@ -75,7 +75,7 @@
                                 </div>
                                 
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="login.html" class="btn btn-lg btn-info btn-block">SIGN UP</a>
+                                <button class="btn btn-lg btn-info btn-block">SIGN UP</button>
                             </fieldset>
                         </form>
                     </div>

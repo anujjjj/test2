@@ -66,7 +66,11 @@
                     <div class="panel-body">
                         <form role="form" action="Login" method="post">
                             <fieldset>
-                            	<h2><%=request.getAttribute("errorMessage") %></h2>
+                            	<% String message=(String)request.getAttribute("errorMessage"); %>
+                            	
+                            	<% if(message!=null) { %>
+                            	<h5 style="color : red"><%= message %></h5>
+                            	<% }%>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus>
                                 </div>

@@ -34,7 +34,7 @@ public class SignUp extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -61,7 +61,6 @@ public class SignUp extends HttpServlet {
 		//userName,pass from student where userName=? and pass=?
 		String sql="insert into User(id,email,password,phone,first_name,last_name)" + "values(?,?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-		
 		ps.setString(1, un);
 		ps.setString(3, pw);
 		ps.setString(2, email);
@@ -75,12 +74,13 @@ public class SignUp extends HttpServlet {
             // get candidate id
             rs = ps.getGeneratedKeys();
             if(rs.next())
-                candidateId = rs.getInt(1);
-
+                CandidateId = rs.getString(1);
+            	c.close();
+            	response.sendRedirect("signup_success.jsp");
         }
 		
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block				
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

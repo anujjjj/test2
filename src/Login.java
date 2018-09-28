@@ -73,7 +73,8 @@ public class Login extends HttpServlet {
 //			response.getWriter().append("Logged In").append(request.getContextPath());
 			HttpSession session = request.getSession(true);	    
 			session.setAttribute("username",un); 
-			response.sendRedirect("dashboard.jsp");			
+			response.sendRedirect("dashboard.jsp");		
+			c.close();
 			return;
 		}
 		
@@ -83,6 +84,7 @@ public class Login extends HttpServlet {
         request.setAttribute("errorMessage", "Invalid user or password");
         RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
         rd.forward(request, response); 
+        c.close();
 		return;
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block				
