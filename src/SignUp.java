@@ -11,8 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.RequestDispatcher;
+import org.mindrot.jbcrypt.*;
+
 
 /**
  * Servlet implementation class SignUp
@@ -58,11 +58,12 @@ public class SignUp extends HttpServlet {
 	
 		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "messi"); // gets a new connection
 		
-		//userName,pass from student where userName=? and pass=?
+		String pw_hash = BCrypt.hashpw(pw, BCrypt.gensalt()); 
+		
 		String sql="insert into User(id,email,password,phone,first_name,last_name)" + "values(?,?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, un);
-		ps.setString(3, pw);
+		ps.setString(3, pw_hash);
 		ps.setString(2, email);
 		ps.setString(4, phone);
 		ps.setString(5, eno);

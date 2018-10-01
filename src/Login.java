@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.RequestDispatcher;
 
+import org.mindrot.jbcrypt.*;
+
+
 /**
  * Servlet implementation class Login
  */
@@ -51,37 +54,59 @@ public class Login extends HttpServlet {
 				
 		String un=request.getParameter("username");
 		String pw=request.getParameter("password");
-		
+		String pw_hash="";
+ 		
 		// Connect to mysql and verify username password
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		 // loads driver
 		
-		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "messi"); // gets a new connection
+		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "messi"); // gets a new connection
 		
- 
-		PreparedStatement ps = c.prepareStatement("select userName,pass from student where userName=? and pass=?");
+		
+		PreparedStatement ps1 = c.prepareStatement("select id,password from User where id=? ");
+		ps1.setString(1, un);		
+		
+		ResultSet rs1 = ps1.executeQuery();
+		if(rs1.next()) {
+			 pw_hash = rs1.getString("password");
+			 System.out.println(pw_hash);
+		}
+		
+		else {
+			request.setAttribute("errorMessage", "User not found");
+	        RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
+	        rd.forward(request, response); 
+	        c.close();
+			return;
+		}
+		 
+		
+		PreparedStatement ps = c.prepareStatement("select id,password from User where id=? and password=?");
 		ps.setString(1, un);
-		ps.setString(2, pw);
+		ps.setString(2, pw_hash);
  
-		ResultSet rs = ps.executeQuery();
+		ResultSet rs = ps.executeQuery();		
 		
- 
 		while (rs.next()) {
 //			response.sendRedirect("success.html");
 //			response.getWriter().append("Logged In").append(request.getContextPath());
+			
+			if(BCrypt.checkpw(pw, pw_hash)) {
 			HttpSession session = request.getSession(true);	    
 			session.setAttribute("username",un); 
 			response.sendRedirect("dashboard.jsp");		
 			c.close();
 			return;
+			}
+			
 		}
 		
 		//response.sendRedirect("error.html");
 		HttpSession session = request.getSession(true);	
 		session.invalidate();
-        request.setAttribute("errorMessage", "Invalid user or password");
+        request.setAttribute("errorMessage", "Invalid password");
         RequestDispatcher rd = request.getRequestDispatcher("/jsp/login.jsp");
         rd.forward(request, response); 
         c.close();

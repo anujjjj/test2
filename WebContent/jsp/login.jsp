@@ -1,5 +1,5 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html lang="en">
 
 <head>
@@ -29,11 +29,7 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-   
-   
+  
 
 </head>
 
@@ -82,8 +78,7 @@
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
                                 </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <!--  <a href="index.html" class="btn btn-lg btn-info btn-block">Login</a>-->
+                                
                                 <input type="submit" class="btn btn-lg btn-info btn-block" value="Login">
                                 <div >
                                     	<p></p>
