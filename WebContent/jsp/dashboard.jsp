@@ -370,7 +370,7 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Set & Decoration<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">FE Meet</a>
+                                    <a href="../Event?event_id=1" >FE Meet1</a>
                                 </li>
                                 <li>
                                     <a href="#">Addiciton</a>

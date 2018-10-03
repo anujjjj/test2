@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 		ResultSet rs1 = ps1.executeQuery();
 		if(rs1.next()) {
 			 pw_hash = rs1.getString("password");
-			 System.out.println(pw_hash);
+			 
 		}
 		
 		else {
