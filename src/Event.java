@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 
 /**
  * Servlet implementation class Event
@@ -51,17 +50,14 @@ public class Event extends HttpServlet  {
 		PreparedStatement pst=null;
 		pst = c.prepareStatement("select * from Event where eventId=? ");
 		pst.setInt(1, event_id);			
-		ServletContext sc = this.getServletContext();
+		
 
 		ResultSet rs = pst.executeQuery();
 		
 		if(rs.next()) {
 			String  eventName= rs.getString("eventName");
 			String  introduction= rs.getString("introduction");			
-			request.setAttribute("eventName", eventName);
-			
-			System.out.println(eventName);
-			System.out.println(introduction);
+			request.setAttribute("eventName", eventName);				
 			request.setAttribute("event_id", event_id);
 			request.setAttribute("introduction", introduction);
 			pst.close();
@@ -69,12 +65,7 @@ public class Event extends HttpServlet  {
 			
 	        RequestDispatcher rd = request.getRequestDispatcher("/jsp/event.jsp");
 	        rd.forward(request, response);
-		}
-		
-							
-		
-		//response.getWriter().append("e " + event_id).append(request.getContextPath());
-                
+		}									               
         
 		return;	
 		}

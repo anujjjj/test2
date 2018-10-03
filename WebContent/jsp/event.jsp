@@ -12,7 +12,7 @@
 		int event_id =Integer.parseInt(request.getParameter("event_id")); 
 		String eventName = (String)request.getAttribute("eventName");
 		String introduction = (String)request.getAttribute("introduction");
-		System.out.println(eventName);
+		
 	%>
 		
 	

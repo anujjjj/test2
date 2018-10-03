@@ -44,8 +44,7 @@
     response.setHeader("Pragma","no-cache");
 	String username=(String)session.getAttribute("username");
     if(username==null)
-    {
-        
+    {        
     	response.sendRedirect("login.jsp");
     }
     else {
