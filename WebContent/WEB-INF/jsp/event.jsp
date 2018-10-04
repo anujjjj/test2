@@ -23,14 +23,14 @@
 <body>
 
 
-	
- 	<%
+
+	<%
 		int event_id =Integer.parseInt(request.getParameter("event_id")); 
 		String eventName = (String)request.getAttribute("eventName");
 		String introduction = (String)request.getAttribute("introduction");
-		System.out.println(eventName);
-	%>  
-	 
+		
+	%>
+
 	
 	<script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -51,11 +51,10 @@
 	
 	<h2>Event </h2>
 	
-	
-   	<%= event_id %>
+ 	<%= event_id %>
 	<%= eventName %>
 	<%= introduction %> 
-	 
+	
 	
 	 <!-- jQuery -->
     

@@ -12,19 +12,19 @@
     <title>PIConnecT</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="/test2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="/test2/vendor/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet" type="text/css">
 
     <!-- Custom CSS -->
-    <link href="/test2/dist/css/sb-admin-2.css" rel="stylesheet" type="text/css">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet" type="text/css">
 
     <!-- Morris Charts CSS -->
-    <link href="/test2/vendor/morrisjs/morris.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet" type="text/css">
 
     <!-- Custom Fonts -->
-    <link href="/test2/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -268,7 +268,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="/test2/jsp/logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -555,25 +555,28 @@
 
     </div>
     <!-- /#wrapper -->
-    
+    <%
+    	String cp= request.getContextPath();
+    	System.out.println(cp);
+    %>
 
     <!-- jQuery -->
-    <script src="/test2/vendor/jquery/jquery.min.js" ></script>
+    <script src="../vendor/jquery/jquery.min.js" ></script>
 
     <!-- Bootstrap Core JavaScript -->
     
-    <script src="/test2/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${cp}/WebContent/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="/test2/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="/test2/vendor/raphael/raphael.min.js"></script>
-    <script src="/test2/vendor/morrisjs/morris.min.js"></script>
-    <script src="/test2/data/morris-data.js"></script>
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="/test2/dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
 
 </body>
 
