@@ -40,34 +40,62 @@ public class Event extends HttpServlet  {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int event_id;
-		event_id = Integer.parseInt(request.getParameter("event_id"));		
+		String eventId = request.getParameter("eventId");		
+		String interestID=request.getParameter("Interest_idInterest");
 		
 		try {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection c=null;
-		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "messi");
+		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123");
 		PreparedStatement pst=null;
+		PreparedStatement pst1=null;
 		pst = c.prepareStatement("select * from Event where eventId=? ");
-		pst.setInt(1, event_id);			
+		pst1= c.prepareStatement("select info from Event_has_Interest where Event_eventId=? && Interest_idInterest=?");
+		pst.setString(1, eventId);	
+		pst1.setString(1, eventId);
+		pst1.setString(2, interestID);
 		
 
 		ResultSet rs = pst.executeQuery();
+		ResultSet rs1 = pst1.executeQuery();
 		
 		if(rs.next()) {
 			String  eventName= rs.getString("eventName");
-			String  introduction= rs.getString("introduction");			
+			String  startDate= rs.getString("startDate");
+			String  endDate= rs.getString("endDate");			
+			String  ldatevol= rs.getString("ldatevol");			
+			String  ldatereg= rs.getString("ldatereg");			
+
 			request.setAttribute("eventName", eventName);				
-			request.setAttribute("event_id", event_id);
-			request.setAttribute("introduction", introduction);
+			request.setAttribute("eventId", eventId);
+			request.setAttribute("ldatevol", ldatevol);
+			request.setAttribute("ldatereg", ldatereg);
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
 			pst.close();
-			c.close();
+			//c.close();
 			
-	        RequestDispatcher rd = request.getRequestDispatcher("/jsp/event.jsp");
-	        rd.forward(request, response);
+	      //  RequestDispatcher rd = request.getRequestDispatcher("/jsp/event.jsp");
+	      //  rd.forward(request, response);
 //			response.sendRedirect("./jsp/event.jsp");
-		}									               
-        
+		}	
+		
+		if(rs1.next()) {
+			String  info= rs1.getString("info");
+				
+
+			request.setAttribute("info", info);				
+			
+			pst1.close();
+			
+			
+	        
+		}	
+		c.close();
+		RequestDispatcher rd = request.getRequestDispatcher("/jsp/event.jsp");
+        rd.forward(request, response);
+//		response.sendRedirect("./jsp/event.jsp");
+		
 		return;	
 		}
 		catch(ClassNotFoundException | SQLException e) {

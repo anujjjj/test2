@@ -301,7 +301,7 @@ table.dataTable thead .sorting:after {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%;
+  left: 2.85%;
   width: 3px;
   margin-left: -1.5px;
   background-color: #eeeeee;

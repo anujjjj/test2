@@ -56,11 +56,11 @@ public class SignUp extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 		 // loads driver
 	
-		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "messi"); // gets a new connection
+		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123"); // gets a new connection
 		
 		String pw_hash = BCrypt.hashpw(pw, BCrypt.gensalt()); 
 		
-		String sql="insert into User(id,email,password,phone,first_name,last_name)" + "values(?,?,?,?,?,?)";
+		String sql="insert into User(id,email,password,firstName,lastName,phone)" + "values(?,?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		ps.setString(1, un);
 		ps.setString(3, pw_hash);

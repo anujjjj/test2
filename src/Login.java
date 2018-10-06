@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
 			Class.forName("com.mysql.jdbc.Driver");
 		 // loads driver
 		
-		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "messi"); // gets a new connection
+		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123"); // gets a new connection
 		
 		
 		PreparedStatement ps1 = c.prepareStatement("select id,password from User where id=? ");

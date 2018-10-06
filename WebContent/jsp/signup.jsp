@@ -15,10 +15,20 @@
        { 
          background-image:url('../photos/login_bg.jpg');
        }
+       td
+       {
+        width: 5%;
+        align-items: center;
+       }
+       tr
+       {
+        text-align: center;
+       }
+
     </style>
 
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -40,18 +50,19 @@
 
 <body>
 
-   <center><label class="title">PIConnecT</label></center>
+   <center><label class="title" style="margin-top: 0px;">PIConnecT</label></center>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
+                <div class="login-panel panel panel-default" style="margin-top: 0px;">
                     <div class="panel-heading">
                         <h3 class="panel-title">SIGNUP</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="SignUp" method="post">
                             <fieldset>
+                                <legend style="font-size: 17px;">Personal Details</legend>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="First Name" name="username" type="text" autofocus>
                                 </div>
@@ -73,10 +84,36 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Re-type Password" name="password" type="password" value="">
                                 </div>
-                                
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button class="btn btn-lg btn-info btn-block">SIGN UP</button>
                             </fieldset>
+
+                            <fieldset>
+                                <legend style="font-size: 17px; margin: 0%;">Select your Interests</legend>
+                             
+                            <table style="margin-top: 5%; margin-left: 4%;">
+                                <tr>
+                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Dance</td>
+
+                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Drama</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Music</td>
+                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Sports</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Photography</td>
+                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Painting</td>
+                                </tr>
+                            </table>
+                            
+                            <table style="margin-bottom: 5%;margin-left: 4.3%;">
+                                <tr><td><input type="checkbox" name=""> </td><td style="width: 25%; text-align: left;">Sets & Decoration</td></tr>
+                            </table>
+                            
+
+
+
+                            </fieldset>
+                            <button class="btn btn-lg btn-info btn-block">SIGN UP</button>
                         </form>
                     </div>
                 </div>

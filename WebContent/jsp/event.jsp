@@ -5,60 +5,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PIConnecT</title>
- <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
+   
 <body>
 
-
-	
- 	<%
-		int event_id =Integer.parseInt(request.getParameter("event_id")); 
-		String eventName = (String)request.getAttribute("eventName");
-		String introduction = (String)request.getAttribute("introduction");
-		System.out.println(eventName);
+	<%
+ 	String eventId =request.getParameter("eventId"); 
+	String eventName = (String)request.getAttribute("eventName");
+	String startDate = (String)request.getAttribute("startDate");
+	String endDate = (String)request.getAttribute("endDate");
+	String ldatevol = (String)request.getAttribute("ldatevol");
+	String ldatereg = (String)request.getAttribute("ldatereg");
+	String info = (String)request.getAttribute("info");
 	%>  
 	 
 	
-	<script src="../vendor/jquery/jquery.min.js"></script>
+	<jsp:include page="header.jsp"></jsp:include>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="${cp}/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<jsp:include page="navbar.jsp"></jsp:include>
+                    <div class="jumbotron">
+                        <center><h1><%= eventName %></h1>
+                        <p style="padding: 15px">Start date: <%= startDate %></p><br>
+                                               <p style="padding: 15px">End date: <%= endDate %></p><br>
+                                                <p style="padding: 15px">Last date for volunteer: <%= ldatevol %></p><br>
+                                                <p style="padding: 15px">Last date for registration:<%= ldatereg %></p><br>
+                                             <p style="padding: 15px">Info:<%= info %></p><br>
+                        </center>
+                        
+                        <center>
+                        <p>
+                            <a style="width:180px; margin:10px;" class="btn btn-primary btn-lg" role="button">VOLUNTEER</a>
+                            <a style="width:180px; margin:10px;" class="btn btn-primary btn-lg" role="button">REGISTER</a>
+              			</p>
+						</center></div>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../vendor/raphael/raphael.min.js"></script>
-    <script src="../vendor/morrisjs/morris.min.js"></script>
-    <script src="../data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../dist/js/sb-admin-2.js"></script>
-	<jsp:include page="dashboard.jsp"/>		
-	
-	<h2>Event </h2>
-	
-	
-   	<%= event_id %>
-	<%= eventName %>
-	<%= introduction %> 
-	 
-	
-	 <!-- jQuery -->
-    
-
+     
 </body>
+
 </html>
