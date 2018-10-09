@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>PIConnecT</title>
 
+<style type="text/css">
+</style>
+
 </head>
    
 <body>
@@ -24,13 +27,17 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
-                    <div class="jumbotron">
-                        <center><h1><%= eventName %></h1>
-                        <p style="padding: 15px">Start date: <%= startDate %></p><br>
-                                               <p style="padding: 15px">End date: <%= endDate %></p><br>
-                                                <p style="padding: 15px">Last date for volunteer: <%= ldatevol %></p><br>
-                                                <p style="padding: 15px">Last date for registration:<%= ldatereg %></p><br>
-                                             <p style="padding: 15px">Info:<%= info %></p><br>
+	<div id="wrapper">
+	
+	<div id="page-wrapper" style="margin-top: 15px;">
+                    <div class="jumbotron" style="background-color:white;">
+                    
+                        <div><center><h1><%= eventName%></h1>
+                        <p style="padding: 15px">Start date: <%= startDate %></p>
+                                               <p style="padding: 15px">End date: <%= endDate %></p>
+                                                <p style="padding: 15px">Last date for volunteer: <%= ldatevol %></p>
+                                                <p style="padding: 15px">Last date for registration:<%= ldatereg %></p>
+                                             <p style="padding: 15px">Info: <%=info %></p><br>
                         </center>
                         
                         <center>
@@ -38,9 +45,11 @@
                             <a style="width:180px; margin:10px;" class="btn btn-primary btn-lg" role="button">VOLUNTEER</a>
                             <a style="width:180px; margin:10px;" class="btn btn-primary btn-lg" role="button">REGISTER</a>
               			</p>
-						</center></div>
+						</center>
+					</div>
 
-
+  </div>
+  </div>
      
 </body>
 

@@ -42,15 +42,15 @@
     response.setHeader("Cache-Control","no-store");
     response.setDateHeader("Expires", 0);
     response.setHeader("Pragma","no-cache");
-	String username=(String)session.getAttribute("username");
-    if(username==null)
+	String user=(String)session.getAttribute("username");
+	String firstName=(String)session.getAttribute("firstName");
+    if(user==null)
     {        
     	response.sendRedirect("login.jsp");
     }
-    
 	%>
 	
-    <div id="wrapper">
+    
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -61,20 +61,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">PIConnecT</a>
+                <a class="navbar-brand" href="/test2/jsp/dashboard.jsp">PIConnecT</a>
             </div>
             <!-- /.navbar-header -->
-            <i><label style="margin-top:1.25%; margin-left:75%;">Welcome <%= username %></label></i>
+            <i><label style="width:87%; margin-right:1%; margin-top:1%; font-size:100%; text-align:right;">Welcome <%= firstName %></label></i>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="../Profile"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="/test2/Profile?id=user"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                
                         <li class="divider"></li>
                         <li><a href="/test2/jsp/logout.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -87,7 +86,7 @@
 
         </nav>
 
-        </div>
+        
         <!--wrapper -->
 
 

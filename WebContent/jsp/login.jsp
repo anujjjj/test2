@@ -16,6 +16,16 @@
        { 
          background-image:url("../photos/login_bg.jpg");
        }
+       
+       .field-icon {
+            float: right;
+            margin-right: 2%;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+        
     </style>
 
     <!-- Bootstrap Core CSS -->
@@ -59,7 +69,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">LOGIN</h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="height:200px;">
                         <form role="form" action="Login" method="post">
                             <fieldset>
                             	<% String message=(String)request.getAttribute("errorMessage"); %>
@@ -68,16 +78,15 @@
                             	<h5 style="color : red"><%= message %></h5>
                             	<% }%>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="username" type="text" autofocus>
+                                    <input class="form-control" placeholder="Enrollment No" name="username" type="text" autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                
+                                
+                                <div class="form-group has-feedback">
+                                    <input id="password-field" type="password" class="form-control" name="password" placeholder="Password">
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
+                                
                                 
                                 <input type="submit" class="btn btn-lg btn-info btn-block" value="Login">
                                 <div >
@@ -109,6 +118,19 @@
 
     <!-- Custom Theme JavaScript    -->
       <script src="../dist/js/sb-admin-2.js"></script>
+      
+      
+      <script type="text/javascript">
+        $(".toggle-password").click(function() {
+          $(this).toggleClass("fa-eye fa-eye-slash");
+          var input = $($(this).attr("toggle"));
+          if (input.attr("type") == "password") {
+            input.attr("type", "text");
+          } else {
+            input.attr("type", "password");
+          }
+        });
+    </script>
 
 
 </body>

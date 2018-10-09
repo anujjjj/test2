@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<%@page import="javax.servlet.*" %>
+<%@page import="java.util.*" %>
+<%@page import="java.sql.*" %>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
 <html lang="en">
 
 <head>
@@ -47,6 +54,30 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
+	<%-- <%  	String eventName = (String)request.getAttribute("eventName"); --%>
+ 	     <%--   String einfo = (String)request.getAttribute("einfo"); 		 %>  --%> 
+
+
+ 
+	                                   
+	  <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+         url = "jdbc:mysql://localhost:3306/dbms"
+         user = "root"  password = "123"/>
+ 
+      <sql:query dataSource = "${snapshot}" var = "result">
+         SELECT einfo,eventName from Event;
+      </sql:query>
+ 
+     <!--   <table border = "1" width = "100%">
+         <tr>
+            <th>Event Name</th>
+
+            <th>Event info</th>
+         </tr>
+              </table>
+         -->
+         
+        
    <div id="wrapper">
 
      <div id="page-wrapper" style="margin-top: 15px;">
@@ -55,8 +86,7 @@
             <div class="tab">
               <button class="tablinks" onclick="openCity(event, 'Upcoming_events')" id="defaultOpen">Upcoming Events</button>
               <button class="tablinks" onclick="openCity(event, 'Ongoing_events')">Ongoing Events</button>
-              <button class="tablinks" onclick="openCity(event, 'All_events')">All Events</button>
-            </div>
+           <button class="tablinks" onclick="openCity(event, 'All_events') ">All Events</button>           </div>
 
             <div id="Upcoming_events" class="tabcontent">
               <div class="panel panel-default">
@@ -141,10 +171,14 @@
             <div id="All_events" class="tabcontent">
               <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> All Events
+                         <i class="fa fa-clock-o fa-fw"></i> All Events
                         </div>
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                  
+                       <div class="panel-body">
+                         <%for(int i=0;i<1;i++){ %> 
+                          <c:forEach var = "row" items = "${result.rows}">                                  
+                       
                             <ul class="timeline" >
                                 
                                 <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
@@ -152,31 +186,32 @@
                                     </div>
                                     <div class="timeline-panel" style="width: 93%;" >
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+     		
+                                            <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
+        
+      
+           
+
+     
+                                            <p>  <c:out value = "${row.einfo}"/></p>
                                         </div>
                                     </div>
                                 </li>
 
-                                <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
-                                    <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel" style="width: 93%;" >
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                    </div>
-                                </li>
+                               
                             </ul>
+                                                    </c:forEach>
+ 
+                                                   <%  }%>
+                            
 						</div>
                         <!-- /.panel-body -->
                     </div>
+                  
              </div>
+            
 			</div>
         <!-- /#page-wrapper -->
 
@@ -197,10 +232,13 @@
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+    
+    
 }
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
+
 
 </script>
      

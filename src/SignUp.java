@@ -49,8 +49,11 @@ public class SignUp extends HttpServlet {
 		String phone=request.getParameter("phone");
 		String eno=request.getParameter("eno");
 		String lname=request.getParameter("lname"); 
+		String[] vals = request.getParameterValues("checkbox");
+		String val;
 		String CandidateId; 
 		ResultSet rs = null;
+		ResultSet rs1 = null;
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -62,13 +65,33 @@ public class SignUp extends HttpServlet {
 		
 		String sql="insert into User(id,email,password,firstName,lastName,phone)" + "values(?,?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
-		ps.setString(1, un);
+		ps.setString(4, un);
 		ps.setString(3, pw_hash);
 		ps.setString(2, email);
-		ps.setString(4, phone);
-		ps.setString(5, eno);
-		ps.setString(6, lname);
-				
+		ps.setString(6, phone);
+		ps.setString(1, eno);
+		ps.setString(5, lname);
+		
+		
+		PreparedStatement ps1 = c.prepareStatement("Insert into Student values(?)");
+	    ps1.setString(1, eno);
+	    ps1.executeUpdate();
+		
+	    
+	    PreparedStatement pStmt = c.prepareStatement("Insert into Student_has_Interest values (?,?)");
+		for (int i=0;i<vals.length;i++) {
+			val=vals[i];
+		
+		  pStmt.setString(1, eno);
+		  pStmt.setString(2, val);
+		// System.out.println(val);
+		 pStmt.executeUpdate();
+		 
+		}
+		
+		;
+        //pStmt.close();
+		
 		int rowAffected = ps.executeUpdate();
         if(rowAffected == 1)
         {

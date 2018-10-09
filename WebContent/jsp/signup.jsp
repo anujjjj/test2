@@ -24,6 +24,17 @@
        {
         text-align: center;
        }
+        
+        
+        
+        .field-icon {
+            float: right;
+            margin-right: 2%;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
 
     </style>
 
@@ -78,12 +89,18 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                
+                                <div class="form-group has-feedback">
+                                    <input id="password-field" type="password" class="form-control" name="password" placeholder="Password">
+                                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Re-type Password" name="password" type="password" value="">
+                                
+                                
+                                <div class="form-group has-feedback">
+                                    <input type="password" class="form-control" name="re-password" placeholder="Re-Type Password" id="txtConfirmPassword" onChange="isPasswordMatch();">
+                                    <!--<span toggle="#password-field" class="fa fa-check toggle-password"></span>-->
                                 </div>
+                                <div id="divCheckPassword"></div>
                             </fieldset>
 
                             <fieldset>
@@ -91,29 +108,29 @@
                              
                             <table style="margin-top: 5%; margin-left: 4%;">
                                 <tr>
-                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Dance</td>
+                                    <td><input type="checkbox" name="checkbox" value="danc"> </td><td style="text-align: left;">Dance</td>
 
-                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Drama</td>
+                                    <td><input type="checkbox" name="checkbox" value="dram"> </td><td style="text-align: left;">Drama</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Music</td>
-                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Sports</td>
+                                    <td><input type="checkbox" name="checkbox" value="musi"> </td><td style="text-align: left;">Music</td>
+                                    <td><input type="checkbox" name="checkbox" value="spor"> </td><td style="text-align: left;">Sports</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Photography</td>
-                                    <td><input type="checkbox" name=""> </td><td style="text-align: left;">Painting</td>
+                                    <td><input type="checkbox" name="checkbox" value="phot"> </td><td style="text-align: left;">Photography</td>
+                                    <td><input type="checkbox" name="checkbox" value="pain"> </td><td style="text-align: left;">Painting</td>
                                 </tr>
                             </table>
                             
                             <table style="margin-bottom: 5%;margin-left: 4.3%;">
-                                <tr><td><input type="checkbox" name=""> </td><td style="width: 25%; text-align: left;">Sets & Decoration</td></tr>
+                                <tr><td><input type="checkbox" name="checkbox" value="sede"> </td><td style="width: 25%; text-align: left;">Sets & Decoration</td></tr>
                             </table>
                             
 
 
 
                             </fieldset>
-                            <button class="btn btn-lg btn-info btn-block">SIGN UP</button>
+                            <button id="submit-btn" class="btn btn-lg btn-info btn-block">SIGN UP</button>
                         </form>
                     </div>
                 </div>
@@ -138,6 +155,55 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    
+    <script type="text/javascript">
+        
+        $(".toggle-password").click(function() {
+          $(this).toggleClass("fa-eye fa-eye-slash");
+          var input = $($(this).attr("toggle"));
+          if (input.attr("type") == "password") {
+            input.attr("type", "text");
+          } else {
+            input.attr("type", "password");
+          }
+        });
+        
+        
+        $('#submit-btn').prop('disabled' , true);
+        
+            function isPasswordMatch() {
+            var password = $("#password-field").val();
+            var confirmPassword = $("#txtConfirmPassword").val();
+
+            if (password != confirmPassword) {
+                $("#divCheckPassword").html("Passwords do not match!");
+                $('#submit-btn').prop('disabled' , true);
+            }else{
+                $("#divCheckPassword").html("Passwords match.");
+                $('#submit-btn').prop('disabled' , false);
+            }
+        }
+
+        $(document).ready(function () {
+            $("#txtConfirmPassword").keyup(isPasswordMatch);
+        });
+        
+        
+        
+//         $('#hulk').prop('disabled' , true);
+//        $('#txtConfirmPassword').on('keyup', function () {
+//            var password = $("#txtNewPassword").val();
+//            var confirmPassword = $("#txtConfirmPassword").val();
+//
+//            if (password != confirmPassword) {
+//                $("#divCheckPassword").html("Passwords do not match!");
+//            } else {
+//                $("#divCheckPassword").html("Passwords match.");
+//                $('#hulk').prop('disabled' , false);
+//            }
+//        });
+        
+    </script>
 
 </body>
 

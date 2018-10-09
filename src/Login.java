@@ -31,30 +31,14 @@ import org.mindrot.jbcrypt.*;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub				
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+   
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 				
 		String un=request.getParameter("username");
 		String pw=request.getParameter("password");
 		String pw_hash="";
+		String firstName;
  		
 		// Connect to mysql and verify username password
 		
@@ -65,13 +49,13 @@ public class Login extends HttpServlet {
 		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123"); // gets a new connection
 		
 		
-		PreparedStatement ps1 = c.prepareStatement("select id,password from User where id=? ");
+		PreparedStatement ps1 = c.prepareStatement("select id,password,firstName from User where id=? ");
 		ps1.setString(1, un);		
 		
 		ResultSet rs1 = ps1.executeQuery();
 		if(rs1.next()) {
 			 pw_hash = rs1.getString("password");
-			 
+			 firstName =rs1.getString("firstName");
 		}
 		
 		else {
@@ -95,7 +79,8 @@ public class Login extends HttpServlet {
 			
 			if(BCrypt.checkpw(pw, pw_hash)) {
 			HttpSession session = request.getSession(true);	    
-			session.setAttribute("username",un); 
+			session.setAttribute("firstName",firstName); 
+			session.setAttribute("username",un);
 			response.sendRedirect("dashboard.jsp");		
 			c.close();
 			return;
