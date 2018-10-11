@@ -145,34 +145,38 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                         <sql:query dataSource = "${snapshot}" var = "result1">
-         select eventName,einfo,info from Event_has_Interest as A join Student_has_Interest as B on B.Interest_idInterest  = A.Interest_idInterest  join Event as C on C.eventId = A.Event_eventId where Student_id = "I2K16102145";
+         select eventId,A.Interest_idInterest,eventName,einfo,info from Event_has_Interest as A join Student_has_Interest as B on B.Interest_idInterest  = A.Interest_idInterest  join Event as C on C.eventId = A.Event_eventId where Student_id = "I2K16102145";
          
       </sql:query>
                          <%for(int i=0;i<1;i++){ %> 
                           <c:forEach var = "row" items = "${result1.rows}">                                  
                        
                             <ul class="timeline" >
+                            
                                 
+                                <a href="/test2/Event?eventId=${row.eventId}&Interest_idInterest=${row.Interest_idInterest}" >
                                 <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
+                                    
                                     <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
+                                    </a> 
                                     </div>
+                                    
                                     <div class="timeline-panel" style="width: 93%;" >
+                                    
                                         <div class="timeline-heading">
-     		
-                                            <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
-                                        </div>
+     									     									
+                                                <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
+                                           
+                                        </div>                                        
                                         <div class="timeline-body">
-        
-      
-           
-
      
                                             <p>  <c:out value = "${row.einfo}"/></p>
                                             <p>  <c:out value = "${row.info}"/></p>
                                         </div>
-                                    </div>
+                                    </div>                                   
+                                   	</a>
                                 </li>
-
+								</a>
                                
                             </ul>
                                                     </c:forEach>
