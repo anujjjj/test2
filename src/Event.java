@@ -59,7 +59,8 @@ public class Event extends HttpServlet  {
 			String  startDate= rs.getString("startDate");
 			String  endDate= rs.getString("endDate");			
 			String  ldatevol= rs.getString("ldatevol");			
-			String  ldatereg= rs.getString("ldatereg");			
+			String  ldatereg= rs.getString("ldatereg");
+			String  einfo = rs.getString("einfo");
 
 			request.setAttribute("eventName", eventName);				
 			request.setAttribute("eventId", eventId);
@@ -67,6 +68,7 @@ public class Event extends HttpServlet  {
 			request.setAttribute("ldatereg", ldatereg);
 			request.setAttribute("startDate", startDate);
 			request.setAttribute("endDate", endDate);
+			request.setAttribute("einfo", einfo);
 			pst.close();
 			//c.close();
 			
@@ -86,8 +88,7 @@ public class Event extends HttpServlet  {
 		}	
 		c.close();
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/event.jsp");
-        rd.forward(request, response);
-	//response.sendRedirect("./jsp/event.jsp");
+        rd.forward(request, response);	
 		
 		return;	
 		}

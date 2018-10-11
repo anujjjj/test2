@@ -101,16 +101,19 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                            <sql:query dataSource = "${snapshot}" var = "result2">
-         SELECT einfo,eventName from Event where DateDiff(startDate,curdate()) between 0 and 120;
+         SELECT einfo,eventId,eventName from Event where DateDiff(startDate,curdate()) between 0 and 120;
       </sql:query>
-                         <%for(int i=0;i<1;i++){ %> 
+                         <% for(int i=0;i<1;i++){ %> 
                           <c:forEach var = "row" items = "${result2.rows}">                                  
                        
                             <ul class="timeline" >
-                                
+                                        
+                                <a href="/test2/Event?eventId=${row.eventId}" >	                        
                                 <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
+                                
                                     <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </div>
+                                    </a>
+                                    </div>                                    
                                     <div class="timeline-panel" style="width: 93%;" >
                                         <div class="timeline-heading">
      		
@@ -125,8 +128,9 @@
                                             <p>  <c:out value = "${row.einfo}"/></p>
                                         </div>
                                     </div>
+                                    
                                 </li>
-
+								</a>
                                
                             </ul>
                                                     </c:forEach>
@@ -197,15 +201,16 @@
                   
                        <div class="panel-body">
                         <sql:query dataSource = "${snapshot}" var = "result">
-         SELECT einfo,eventName from Event;
+         SELECT einfo,eventName,eventId from Event;
       </sql:query>
                          <%for(int i=0;i<1;i++){ %> 
                           <c:forEach var = "row" items = "${result.rows}">                                  
                        
                             <ul class="timeline" >
-                                
+                                <a href="/test2/Event?eventId=${row.eventId}" >
                                 <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
                                     <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
+                                    </a>
                                     </div>
                                     <div class="timeline-panel" style="width: 93%;" >
                                         <div class="timeline-heading">

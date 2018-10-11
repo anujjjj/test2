@@ -31,6 +31,7 @@
 	String ldatevol = (String)request.getAttribute("ldatevol");
 	String ldatereg = (String)request.getAttribute("ldatereg");
 	String info = (String)request.getAttribute("info");
+	String einfo = (String)request.getAttribute("einfo");
 	//String interestId = (String)request.getAttribute("interestId");
 
 	%>  
@@ -50,7 +51,13 @@
                                                <p style="padding: 15px">End date: <%= endDate %></p>
                                                 <p style="padding: 15px">Last date for volunteer: <%= ldatevol %></p>
                                                 <p style="padding: 15px">Last date for registration:<%= ldatereg %></p>
-                                             <p style="padding: 15px">Info: <%=info %></p><br>
+                                                <% if(info==null) { %>
+                                                		<p style="padding: 15px">Info: <%=einfo %></p><br>
+                                                <% } 
+                                                else {
+                                                %>
+                                             		<p style="padding: 15px">Info: <%=info %></p><br>
+                                             	<%} %>
                         </center>
                         
                         <center>
