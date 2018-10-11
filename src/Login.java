@@ -42,11 +42,15 @@ public class Login extends HttpServlet {
  		
 		// Connect to mysql and verify username password
 		
+		Mysqlconnect mcon=new Mysqlconnect();
+        String sqlroot=mcon.name;
+        String sqlpassword=mcon.password;
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		 // loads driver
 		
-		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123"); // gets a new connection
+		Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", sqlroot, sqlpassword); // gets a new connection
 		
 		
 		PreparedStatement ps1 = c.prepareStatement("select id,password,firstName from User where id=? ");

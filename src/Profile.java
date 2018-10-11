@@ -1,4 +1,5 @@
-
+import java.io.*;
+import java.util.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,13 +20,16 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/Profile")
 public class Profile extends HttpServlet {
+	
+	
+   
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Profile() {
-        super();
+    	
         // TODO Auto-generated constructor stub
     }
 
@@ -37,11 +41,16 @@ public class Profile extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		HttpSession session = request.getSession(true);	
 		String uid=(String)session.getAttribute("username"); 
-
+		
+		Mysqlconnect mcon=new Mysqlconnect();
+        String sqlroot=mcon.name;
+        String sqlpassword=mcon.password;
+		
+		
 		try {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection c=null;
-		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123");
+		c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", sqlroot , sqlpassword);
 		PreparedStatement pst=null	;
 		pst = c.prepareStatement("select * from User where id=?  ");
 		
