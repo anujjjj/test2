@@ -3,8 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/home/amol/Downloads/jbcrypt-0.3m.jar"/>
-	<classpathentry kind="lib" path="/home/amol/Downloads/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
@@ -15,6 +13,10 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/amol/Downloads/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/s/Downloads/mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar"/>
+	<classpathentry kind="lib" path="/home/s/Downloads/jbcrypt-0.3m.jar"/>
+	<classpathentry kind="lib" path="/home/s/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/home/s/Downloads/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
+	<classpathentry kind="lib" path="/home/s/Downloads/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

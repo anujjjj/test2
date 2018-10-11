@@ -50,23 +50,28 @@
 </head>
     
 <body>
+	<% 
+		response.setHeader("Cache-Control","no-cache");
+	    response.setHeader("Cache-Control","no-store");
+	    response.setDateHeader("Expires", 0);
+	    response.setHeader("Pragma","no-cache");
+		String user=(String)session.getAttribute("username");
+		String firstName=(String)session.getAttribute("firstName");
+	    if(user==null)
+	    {        
+	    	response.sendRedirect("login.jsp");
+	    }
+	%>
 
-<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
-	<%-- <%  	String eventName = (String)request.getAttribute("eventName"); --%>
- 	     <%--   String einfo = (String)request.getAttribute("einfo"); 		 %>  --%> 
-
-
- 
 	                                   
 	  <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
          url = "jdbc:mysql://localhost:3306/dbms"
-         user = "root"  password = "123"/>
+         user = "root"  password = "123" />
  
-      <sql:query dataSource = "${snapshot}" var = "result">
-         SELECT einfo,eventName from Event;
-      </sql:query>
+     
  
      <!--   <table border = "1" width = "100%">
          <tr>
@@ -85,7 +90,7 @@
             <!-- /.row -->
             <div class="tab">
               <button class="tablinks" onclick="openCity(event, 'Upcoming_events')" id="defaultOpen">Upcoming Events</button>
-              <button class="tablinks" onclick="openCity(event, 'Ongoing_events')">Ongoing Events</button>
+              <button class="tablinks" onclick="openCity(event, 'Your Interests Related Events')">Your Interests Related Events</button>
            <button class="tablinks" onclick="openCity(event, 'All_events') ">All Events</button>           </div>
 
             <div id="Upcoming_events" class="tabcontent">
@@ -95,6 +100,12 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                           <sql:query dataSource = "${snapshot}" var = "result2">
+         SELECT einfo,eventName from Event where DateDiff(startDate,curdate()) between 0 and 120;
+      </sql:query>
+                         <%for(int i=0;i<1;i++){ %> 
+                          <c:forEach var = "row" items = "${result2.rows}">                                  
+                       
                             <ul class="timeline" >
                                 
                                 <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
@@ -102,39 +113,44 @@
                                     </div>
                                     <div class="timeline-panel" style="width: 93%;" >
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+     		
+                                            <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
+        
+      
+           
+
+     
+                                            <p>  <c:out value = "${row.einfo}"/></p>
                                         </div>
                                     </div>
                                 </li>
 
-                                <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
-                                    <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel" style="width: 93%;" >
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                    </div>
-                                </li>
+                               
                             </ul>
+                                                    </c:forEach>
+ 
+                                                   <%  }%>
                         </div>
                         <!-- /.panel-body -->
                     </div>
             </div>
 
-            <div id="Ongoing_events" class="tabcontent">
+            <div id="Your Interests Related Events" class="tabcontent">
               <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Ongoing Events
+                            <i class="fa fa-clock-o fa-fw"></i> Your Interests Related Events
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
+                        <sql:query dataSource = "${snapshot}" var = "result1">
+         select eventName,einfo,info from Event_has_Interest as A join Student_has_Interest as B on B.Interest_idInterest  = A.Interest_idInterest  join Event as C on C.eventId = A.Event_eventId where Student_id = "I2K16102145";
+         
+      </sql:query>
+                         <%for(int i=0;i<1;i++){ %> 
+                          <c:forEach var = "row" items = "${result1.rows}">                                  
+                       
                             <ul class="timeline" >
                                 
                                 <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
@@ -142,27 +158,27 @@
                                     </div>
                                     <div class="timeline-panel" style="width: 93%;" >
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
+     		
+                                            <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
+        
+      
+           
+
+     
+                                            <p>  <c:out value = "${row.einfo}"/></p>
+                                            <p>  <c:out value = "${row.info}"/></p>
                                         </div>
                                     </div>
                                 </li>
 
-                                <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
-                                    <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </div>
-                                    <div class="timeline-panel" style="width: 93%;" >
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt obcaecati, quaerat tempore officia voluptas debitis consectetur culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim incidunt quisquam maxime neque eaque.</p>
-                                        </div>
-                                    </div>
-                                </li>
+                               
                             </ul>
+                                                    </c:forEach>
+ 
+                                                   <%  }%>
+                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -176,6 +192,9 @@
                         <!-- /.panel-heading -->
                   
                        <div class="panel-body">
+                        <sql:query dataSource = "${snapshot}" var = "result">
+         SELECT einfo,eventName from Event;
+      </sql:query>
                          <%for(int i=0;i<1;i++){ %> 
                           <c:forEach var = "row" items = "${result.rows}">                                  
                        

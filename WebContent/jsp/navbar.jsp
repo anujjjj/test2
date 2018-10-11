@@ -13,11 +13,10 @@
 
 <body>
 	
-	
 	<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
 	
          url = "jdbc:mysql://localhost:3306/dbms"
-         user = "root"  password = "123"/>
+         user = "root" password = "123" />
  
       <sql:query dataSource = "${snapshot}" var = "result">
          SELECT * from Interest;
