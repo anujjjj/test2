@@ -90,18 +90,18 @@ body {font-family: "Lato", sans-serif;}
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
+            <div class="row" >
                         <label for="my_checkbox">
                            
-						<h4 style="padding-left:15px;"><span class="fa fa-plus-circle"></span>   Volunteers</h4>
+						<h4 style="padding-left:15px;"><span toggle="#my_checkbox" class="fa fa-plus-circle field-icon toggle-my_checkbox">   Volunteers</span></h4>
 					    </label>
 
 					<input type="checkbox" id="my_checkbox" style="display:none">
-					<div id="hidden">
-						<div id="VOLUNTEERS" class="tabcontent">
+					<div id="hidden" >
+						<div  class="tabcontent" style="overflow-y:scroll;">
 
 
-                          <div class="panel-body">
+                          <div class="panel-body" >
                             <table width="100%" class="table table-striped table-bordered table-hover" id="vol_table">
                                 <thead>
                                     <tr>
@@ -117,15 +117,15 @@ body {font-family: "Lato", sans-serif;}
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        <td><input type="checkbox"></td>
                                     </tr>
                                     <tr class="even gradeC">
-                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><input type="checkbox"></td>
                                     </tr>
                                  </tbody>
                             </table>
@@ -139,12 +139,12 @@ body {font-family: "Lato", sans-serif;}
             
             <div class="row">
                         <label for="my_checkbox1">
-						<h4 style="padding-left:15px;"><span class="fa fa-plus-circle"></span>   Participants</h4>
+						<h4 style="padding-left:15px;"><span toggle="#my_checkbox1" class="fa fa-plus-circle field-icon toggle-my_checkbox1">   Participants</span></h4>
 					    </label>
 
 					<input type="checkbox" id="my_checkbox1" style="display:none">
 					<div id="hidden">
-						<div id="PARTICIPANTS" class="tabcontent">
+						<div  class="tabcontent" style="overflow-y:scroll;">
 
 
                           <div class="panel-body">
@@ -163,15 +163,15 @@ body {font-family: "Lato", sans-serif;}
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        <td><input type="checkbox"></td>
                                     </tr>
                                     <tr class="even gradeC">
-                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><input type="checkbox"></td>
                                     </tr>
                                  </tbody>
                             </table>
@@ -184,13 +184,13 @@ body {font-family: "Lato", sans-serif;}
             
             
             <div class="row">
-                        <label for="my_checkbox2">
-						<h4 style="padding-left:15px;"><span class="fa fa-plus-circle"></span>   Volunteer final list</h4>
+                        <label for="my_checkbox2"> 
+						<h4 style="padding-left:15px;"><span toggle="#my_checkbox2" class="fa fa-plus-circle field-icon toggle-my_checkbox2">   Volunteers final list</span></h4>
 					    </label>
 
 					<input type="checkbox" id="my_checkbox2" style="display:none">
 					<div id="hidden">
-						<div id="PARTICIPANTS" class="tabcontent">
+						<div  class="tabcontent" style="overflow-y:scroll;">
 
 
                           <div class="panel-body">
@@ -201,7 +201,7 @@ body {font-family: "Lato", sans-serif;}
                                         <th>Last Name</th>
                                         <th>Email id</th>
                                         <th>Phone no</th>
-                                        <th>Yes/No</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -209,15 +209,15 @@ body {font-family: "Lato", sans-serif;}
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        
                                     </tr>
                                     <tr class="even gradeC">
-                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        <td></td>
+                                        
                                     </tr>
                                  </tbody>
                             </table>
@@ -230,12 +230,12 @@ body {font-family: "Lato", sans-serif;}
             
             <div class="row">
                         <label for="my_checkbox3">
-						<h4 style="padding-left:15px;"><span class="fa fa-plus-circle"></span>   Participants final list</h4>
+						<h4 style="padding-left:15px;"><span toggle="#my_checkbox3" class="fa fa-plus-circle field-icon toggle-my_checkbox3">   Participants final list</span></h4>
 					    </label>
 
 					<input type="checkbox" id="my_checkbox3" style="display:none">
 					<div id="hidden">
-						<div id="PARTICIPANTS" class="tabcontent">
+						<div  class="tabcontent" style="overflow-y:scroll;">
 
 
                           <div class="panel-body">
@@ -246,7 +246,7 @@ body {font-family: "Lato", sans-serif;}
                                         <th>Last Name</th>
                                         <th>Email id</th>
                                         <th>Phone no</th>
-                                        <th>Yes/No</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -254,15 +254,15 @@ body {font-family: "Lato", sans-serif;}
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        
                                     </tr>
                                     <tr class="even gradeC">
-                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
+                                        <td></td>
+                                        <td></td>
+                                        
                                     </tr>
                                  </tbody>
                             </table>
@@ -276,43 +276,16 @@ body {font-family: "Lato", sans-serif;}
             
             <div class="row">
                         <label for="my_checkbox4">
-						<h4 style="padding-left:15px;"><span class="fa fa-plus-circle"></span>   Edit event details</h4>
+						<h4 style="padding-left:15px;"><span toggle="#my_checkbox4" class="fa fa-plus-circle field-icon toggle-my_checkbox4">   Edit event details</span></h4>
 					    </label>
 
 					<input type="checkbox" id="my_checkbox4" style="display:none">
 					<div id="hidden">
-						<div id="PARTICIPANTS" class="tabcontent">
+						<div  class="tabcontent" style="overflow-y:scroll;">
 
 
                           <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="vol_table">
-                                <thead>
-                                    <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email id</th>
-                                        <th>Phone no</th>
-                                        <th>Yes/No</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td class="center"></td>
-                                        <td class="center"></td>
-                                    </tr>
-                                 </tbody>
-                            </table>
-                            <!-- /.table-responsive -->
+                            
                             
                           </div>
                         </div>
@@ -321,27 +294,18 @@ body {font-family: "Lato", sans-serif;}
         </div>
         <!-- /#page-wrapper -->
 
-    </div>
+  
    
 
-     <script>
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
+
+<script type="text/javascript">
+        $(".toggle-my_checkbox").click(function(){$(this).toggleClass("fa-plus-circle fa-minus-circle");});
+        $(".toggle-my_checkbox1").click(function(){$(this).toggleClass("fa-plus-circle fa-minus-circle");});
+        $(".toggle-my_checkbox2").click(function(){$(this).toggleClass("fa-plus-circle fa-minus-circle");});
+        $(".toggle-my_checkbox3").click(function(){$(this).toggleClass("fa-plus-circle fa-minus-circle");});
+        $(".toggle-my_checkbox4").click(function(){$(this).toggleClass("fa-plus-circle fa-minus-circle");});
+    </script>
 
 
 </body>

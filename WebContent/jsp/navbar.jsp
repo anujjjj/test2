@@ -1,11 +1,31 @@
 
 <!DOCTYPE html>
+
+<%@page import="javax.servlet.*" %>
+<%@page import="java.util.*" %>
+<%@page import="java.sql.*" %>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <html lang="en">
 
 
 
 <body>
 	
+	
+	<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+	
+         url = "jdbc:mysql://localhost:3306/dbms"
+         user = "root"  password = "123"/>
+ 
+      <sql:query dataSource = "${snapshot}" var = "result">
+         SELECT * from Interest;
+      </sql:query>
+      
+       
+                         
+      
 
        <div class="navbar-default sidebar" role="navigation" style="margin-top:12px;">
                 <div class="sidebar-nav navbar-collapse">
@@ -17,129 +37,45 @@
                         
                         
                         
-                        <!--multi-->
+                        
+                        
+                         <%for(int i=0;i<1;i++){ %> 
+                          <c:forEach var = "row" items = "${result.rows}">  
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Dance<span class="fa arrow"></span></a>
+                            <a href="#"><i class="${row.logo}"></i>  <c:out value = " ${row.interestsName}"/><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
+                            
+                            <sql:query dataSource = "${snapshot}" var = "result1">
+         						SELECT Event_eventId from Event_has_Interest where Interest_idInterest="${row.idInterest}";
+       						</sql:query>
+       						
+       						
+                            
+                            <%for(int j=0;j<1;j++){ %> 
+                            <c:forEach var = "row1" items = "${result1.rows}">
+                           
+                           
+                                <sql:query dataSource = "${snapshot}" var = "result2">
+         						SELECT eventName from Event where eventId="${row1.Event_eventId}";
+       							</sql:query>
+                                <c:forEach var = "row2" items = "${result2.rows}">
                                 <li>
-                                    <a href="/test2/Event?eventId=feme&Interest_idInterest=danc">FE Meet</a>
+                                    <a href="/test2/Event?eventId=${row1.Event_eventId}&Interest_idInterest=${row.idInterest}"> <c:out value = "${row2.eventName}"/></a>
                                 </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=dand&Interest_idInterest=danc">Dandiya Nights</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=addi&Interest_idInterest=danc">Addiction</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=abhi&Interest_idInterest=danc">Abhivyakti</a>
-                                </li>
+                                
+                                
+                                </c:forEach>
+                                </c:forEach>
+ 
+                                                   <%  }%>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         
                         
-                        <!--multi-->
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Drama<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/test2/Event?eventId=feme&Interest_idInterest=dram">FE Meet</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=addi&Interest_idInterest=dram">Addiciton</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=abhi&Interest_idInterest=dram">Abhivyakti</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        
-                        <!--multi-->
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Music<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/test2/Event?eventId=feme&Interest_idInterest=musi">FE Meet</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=addi&Interest_idInterest=musi">Addiciton</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=abhi&Interest_idInterest=musi">Abhivyakti</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        
-                        <!--multi-->
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Sports<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/test2/Event?eventId=foot&Interest_idInterest=spor">Football</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=cric&Interest_idInterest=spor">Cricket</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=tate&Interest_idInterest=spor">Table tennis</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=badm&Interest_idInterest=spor">Badminton</a>
-                                </li>
-                             
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        
-                        <!--multi-->
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Set & Decoration<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/test2/Event?eventId=feme&Interest_idInterest=sede" >FE Meet</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=addi&Interest_idInterest=sede">Addiciton</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=abhi&Interest_idInterest=sede">Abhivyakti</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        
-                        <!--multi-->
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Photography<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/test2/Event?eventId=pics&Interest_idInterest=phot">Pics-o-reel</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        
-                        
-                        <!--multi-->
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Painting<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="/test2/Event?eventId=abhi&Interest_idInterest=pain">Abhivyakti</a>
-                                </li>
-                                <li>
-                                    <a href="/test2/Event?eventId=pics&Interest_idInterest=pain">Pics-o-reel</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                      
+                        </c:forEach>
+ 
+                                                   <%  }%>
                         <br/>
                         <center>
                         <li>

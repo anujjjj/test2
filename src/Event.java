@@ -31,6 +31,7 @@ public class Event extends HttpServlet  {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		String eventId = request.getParameter("eventId");		
 		String interestID=request.getParameter("Interest_idInterest");
+
 		
 		try {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -39,7 +40,7 @@ public class Event extends HttpServlet  {
 		PreparedStatement pst=null;
 		PreparedStatement pst1=null;
 		pst = c.prepareStatement("select * from Event where eventId=? ");
-		pst1= c.prepareStatement("select info from Event_has_Interest where Event_eventId=? && Interest_idInterest=?");
+		pst1= c.prepareStatement("select info,Interest_idInterest from Event_has_Interest where Event_eventId=? && Interest_idInterest=?");
 		pst.setString(1, eventId);	
 		pst1.setString(1, eventId);
 		pst1.setString(2, interestID);
@@ -53,7 +54,9 @@ public class Event extends HttpServlet  {
 			String  startDate= rs.getString("startDate");
 			String  endDate= rs.getString("endDate");			
 			String  ldatevol= rs.getString("ldatevol");			
-			String  ldatereg= rs.getString("ldatereg");			
+			String  ldatereg= rs.getString("ldatereg");
+
+			
 
 			request.setAttribute("eventName", eventName);				
 			request.setAttribute("eventId", eventId);
@@ -71,7 +74,11 @@ public class Event extends HttpServlet  {
 		
 		if(rs1.next()) {
 			String  info= rs1.getString("info");
-			request.setAttribute("info", info);				
+			//String  interestId= rs1.getString("Interest_idInterest");
+
+			request.setAttribute("info", info);	
+			//request.setAttribute("interestId", interestId);				
+
 			
 			pst1.close();
 			
