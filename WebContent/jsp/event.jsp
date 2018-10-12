@@ -62,13 +62,7 @@
                         
                         <center>
                         <p>
-                         <%--      <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
-        				 url = "jdbc:mysql://localhost:3306/dbms"
-         								user = "root"  password = "123"/>
- 
-     							 <sql:update dataSource = "${snapshot}" var = "result">
-     							    insert into Student_has_Event_has_Interest values("uid","eventId","interestId",1);
-     							 </sql:update>--%>
+                               
            <input type="submit" value="MANAGE">
                             <a style="width:180px; margin:10px;"   class="btn btn-primary btn-lg" role="button">PARTICIPATE</a>
               			</p>
@@ -78,7 +72,13 @@
 
   </div>
   </div>
-     
-</body>
+ <%--  <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+        				 url = "jdbc:mysql://localhost:3306/dbms"
+         								user = "root"  password = "123"/>
+ 
+     							 <sql:update dataSource = "${snapshot}" var = "result">
+     							    insert into Student_has_Event_has_Interest values("uid","eventId","interestId",1);
+     							 </sql:update>
+--%></body>
 
 </html>

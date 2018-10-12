@@ -1,5 +1,7 @@
-<%@page import="java.util.*" %>
-
+	<%@ page import = "java.io.*,java.util.*,java.sql.*"%>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,7 +86,22 @@ body {font-family: "Lato", sans-serif;}
        <jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
+
+<sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+         url = "jdbc:mysql://localhost:3306/dbms"
+         user = "root"  password = "123"/>
+
+        
+ 
+    
+            
+        
+         
+
 	
+	 <sql:query dataSource = "${snapshot}" var = "result1">
+             SELECT User.firstName,User.lastName,User.email,User.phone, Student_has_Event_has_Interest.Event_has_Interest_Event_eventId  FROM Student_has_Event_has_Interest INNER JOIN User ON Student_has_Event_has_Interest.Student_id=User.id where Student_has_Event_has_Interest.managedparticipate=0 and Student_has_Event_has_Interest.reqacceptdecline=2;
+         </sql:query>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -117,19 +134,22 @@ body {font-family: "Lato", sans-serif;}
                                 </thead>
                                 <tbody>
                                     <tr class="odd gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="checkbox"></td>
+                                   
+         
+         <c:forEach var = "row" items = "${result1.rows}">
+            <tr>
+				               <td> <c:out value = "${row.firstName}"/></td>
+				               <td> <c:out value = "${row.lastName}"/></td>
+                              <td> <c:out value = "${row.email}"/></td>
+                              <td> <c:out value = "${row.phone}"/></td>
+                               <td><input type="checkbox"></td>
+                              
+               
+        
+       			  </c:forEach>
                                     </tr>
-                                    <tr class="even gradeC">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="checkbox"></td>
-                                    </tr>
+                                    
+                                   
                                  </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -139,7 +159,9 @@ body {font-family: "Lato", sans-serif;}
 					</div>
             </div>
             
-            
+             <sql:query dataSource = "${snapshot}" var = "result">
+             SELECT User.firstName,User.lastName,User.email,User.phone, Student_has_Event_has_Interest.Event_has_Interest_Event_eventId  FROM Student_has_Event_has_Interest INNER JOIN User ON Student_has_Event_has_Interest.Student_id=User.id where Student_has_Event_has_Interest.managedparticipate=1 and Student_has_Event_has_Interest.reqacceptdecline=2;
+         </sql:query>
             <div class="row">
                         <label for="my_checkbox1">
 						<h4 style="padding-left:15px;"><span toggle="#my_checkbox1" class="fa fa-plus-circle field-icon toggle-my_checkbox1">   Participants</span></h4>
@@ -163,20 +185,21 @@ body {font-family: "Lato", sans-serif;}
                                 </thead>
                                 <tbody>
                                     <tr class="odd gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="checkbox"></td>
+         
+         <c:forEach var = "row" items = "${result.rows}">
+            <tr>
+				               <td> <c:out value = "${row.firstName}"/></td>
+				               <td> <c:out value = "${row.lastName}"/></td>
+                              <td> <c:out value = "${row.email}"/></td>
+                              <td> <c:out value = "${row.phone}"/></td>
+                               <td><input type="checkbox"></td>
+                              
+               
+        
+       			  </c:forEach>
                                     </tr>
-                                    <tr class="even gradeC">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><input type="checkbox"></td>
-                                    </tr>
-                                 </tbody>
+                                   
+                                      </tbody>
                             </table>
                             <!-- /.table-responsive -->
                             
