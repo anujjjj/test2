@@ -71,17 +71,7 @@
          url = "jdbc:mysql://localhost:3306/dbms"
          user = "root"  password = "123" />
  
-     
- 
-     <!--   <table border = "1" width = "100%">
-         <tr>
-            <th>Event Name</th>
 
-            <th>Event info</th>
-         </tr>
-              </table>
-         -->
-         
         
    <div id="wrapper">
 

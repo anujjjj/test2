@@ -1,3 +1,5 @@
+<%@page import="java.util.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,6 +84,7 @@ body {font-family: "Lato", sans-serif;}
        <jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
+	
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">

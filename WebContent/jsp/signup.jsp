@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    
+	
+	
+
     <title>PIConnecT</title>
     <style>
        body
@@ -25,7 +27,9 @@
         text-align: center;
        }
         
-        
+        body{ 
+         background-image: linear-gradient(to right, #00c6fb 0%, #005bea 100%);
+        }
         
         .field-icon {
             float: right;
@@ -49,6 +53,16 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	
+	
+	<!-- Date picker -->
+	<link href="../css/datepicker_min.css" rel="stylesheet">
+    <link href="../css/datepicker.css" rel="stylesheet">
+    <script src="../js/googleapi.js"></script>
+    <script src="../js/datebootstrap.js"></script>  
+	<script src="../js/datepicker.js"></script>
+	
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,20 +85,49 @@
                         <h3 class="panel-title">SIGNUP</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" action="SignUp" method="post">
+                        <form name="SignUpForm" role="form" onsubmit="return validate(this);" action="SignUp" method="post">
                             <fieldset>
                                 <legend style="font-size: 17px;">Personal Details</legend>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="First Name" name="username" type="text" autofocus>
+                                    <input class="form-control" id="id_firstname" placeholder="First Name" name="username" type="text" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Last Name" name="lname" type="text" value="">
+                                    <input class="form-control" placeholder="Last Name" name="lname" type="text" value="" required>
+                                </div>
+								<div class="form-group">
+								<!--<strong>Date of Birth</strong>
+                                    <input class="form-control" placeholder="Date Of Birth" name="dob" type="date" max="2018-12-31" value="">-->
+									<input class="date-own form-control" type="text" placeholder="Date Of Birth" autofocus required>  
+									<script>
+										$('.date-own').datepicker({
+											minViewMode: 3,
+											format: 'dd-mm-yyyy'
+										});
+									</script>
+                                </div>
+								<div class="form-group">  
+									<input class="date-own form-control" type="text" placeholder="Admission Year" autofocus required>  
+									<script>
+										$('.date-own').datepicker({
+											minViewMode: 2,
+											format: 'yyyy'
+										});
+									</script>
+							
+                                </div>
+								<div class="form-group">
+									<select class="form-control" required>
+										<option value="" disabled selected>Department</option>
+										<option value="comp">Computer</option>
+										<option value="it">Information Technology</option>
+										<option value="entc">Electronics & Telecommunication</option>
+									</select>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Enrollment-no" name="eno" type="text" autofocus>
+                                    <input class="form-control" placeholder="Enrollment Number" name="eno" type="text" minLength="11" maxLength="11" autofocus required>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Phone-no" name="phone" type="text" value="">
+                                    <input class="form-control" placeholder="Phone Number" name="phone" type="text" minLength="10" maxLength="10" autofocus required>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
@@ -108,34 +151,33 @@
                              
                             <table style="margin-top: 5%; margin-left: 4%;">
                                 <tr>
-                                    <td><input type="checkbox" name="checkbox" value="danc"> </td><td style="text-align: left;">Dance</td>
+                                    <td><input type="checkbox" id="id_dance" name="interest[]"> </td><td style="text-align: left;">Dance</td>
 
-                                    <td><input type="checkbox" name="checkbox" value="dram"> </td><td style="text-align: left;">Drama</td>
+                                    <td><input type="checkbox" id="id_drama" name="interest[]"> </td><td style="text-align: left;">Drama</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" name="checkbox" value="musi"> </td><td style="text-align: left;">Music</td>
-                                    <td><input type="checkbox" name="checkbox" value="spor"> </td><td style="text-align: left;">Sports</td>
+                                    <td><input type="checkbox" id="id_music" name="interest[]"> </td><td style="text-align: left;">Music</td>
+                                    <td><input type="checkbox" name="interest[]"> </td><td style="text-align: left;">Sports</td>
                                 </tr>
                                 <tr>
-                                    <td><input type="checkbox" name="checkbox" value="phot"> </td><td style="text-align: left;">Photography</td>
-                                    <td><input type="checkbox" name="checkbox" value="pain"> </td><td style="text-align: left;">Painting</td>
+                                    <td><input type="checkbox" id="id_photography" name="interest[]"> </td><td style="text-align: left;">Photography</td>
+                                    <td><input type="checkbox" id="id_painting" name="interest[]"> </td><td style="text-align: left;">Painting</td>
                                 </tr>
                             </table>
                             
                             <table style="margin-bottom: 5%;margin-left: 4.3%;">
-                                <tr><td><input type="checkbox" name="checkbox" value="sede"> </td><td style="width: 25%; text-align: left;">Sets & Decoration</td></tr>
+                                <tr><td><input type="checkbox" name="" name="interest[]"> </td><td style="width: 25%; text-align: left;">Sets & Decoration</td></tr>
                             </table>
                             
 
 
 
                             </fieldset>
-                            <button id="submit-btn" class="btn btn-lg btn-info btn-block">SIGN UP</button>
+                            <button id="submit-btn" type="submit" onclick="checkInterests" class="btn btn-lg btn-info btn-block">SIGN UP</button>
                         </form>
                     </div>
                 </div>
             </div>
-            
         </div>
         
         
@@ -155,9 +197,25 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+	
     
     <script type="text/javascript">
-        
+	
+	
+	
+	function validate(form){
+		var opts = document.getElementsByName("interest[]");
+		
+		
+		for(i=0; i<opts.length; i++){
+			if(opts[i].checked){
+				return true;
+			}
+		}
+		alert('Please select at least one interest.');
+		return false;
+	}
+    
         $(".toggle-password").click(function() {
           $(this).toggleClass("fa-eye fa-eye-slash");
           var input = $($(this).attr("toggle"));
@@ -186,22 +244,10 @@
 
         $(document).ready(function () {
             $("#txtConfirmPassword").keyup(isPasswordMatch);
+			
         });
-        
-        
-        
-//         $('#hulk').prop('disabled' , true);
-//        $('#txtConfirmPassword').on('keyup', function () {
-//            var password = $("#txtNewPassword").val();
-//            var confirmPassword = $("#txtConfirmPassword").val();
-//
-//            if (password != confirmPassword) {
-//                $("#divCheckPassword").html("Passwords do not match!");
-//            } else {
-//                $("#divCheckPassword").html("Passwords match.");
-//                $('#hulk').prop('disabled' , false);
-//            }
-//        });
+       
+		
         
     </script>
 

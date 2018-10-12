@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<%@page import="javax.servlet.*" %>
+<%@page import="java.util.*" %>
+<%@page import="java.sql.*" %>
+<%@ page import = "javax.servlet.http.*,javax.servlet.*" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/sql" prefix = "sql"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+
+<%@ page import=" javax.servlet.http.HttpSession"%>
 <html lang="en">
 
 <head>
@@ -15,8 +24,25 @@
 <jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
+
+<% 	String id=(String)session.getAttribute("username");%>
+
+
+  <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
+         url = "jdbc:mysql://localhost:3306/dbms"
+         user = "root"  password = "123" />
+ <sql:query dataSource = "${snapshot}" var = "result">
+         select m.eventName,d.interestsName from Admin s inner join Event m on s.eventId = m.eventId inner join Interest d on  d.idInterest = s.idInterest where s.id=?
+
+                  <sql:param value = "${sessionScope.username}" />
+         
+      </sql:query>   
+                          
+                        
+                          
         <div id="page-wrapper">
             <div class="row">
+            
                 <div class="col-lg-12">
                     <h1 class="page-header">Admin</h1>
                 </div>
@@ -24,6 +50,9 @@
             </div> 
 
 
+                                      <c:forEach var = "row" items = "${result.rows}">    
+
+                   
             <div class="row"> 
                 <br/><br/><br/>
                 <div class="col-lg-3 col-md-6">
@@ -34,48 +63,34 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>DANCE-Abhivyakti</div>
+                                    <div class="huge"></div>
+                                    <div> <c:out value = "${row.eventName}"/>
+                          				 <c:out value = "${row.interestsName}"/>
+									</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <a href="admin_event.jsp"><span class="pull-left">View Details</span></a>
+                                <a href="/test2/jsp/admin_event.jsp"><span class="pull-left">View Details</span></a>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>MUSIC-Addiction</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <a href="admin_event.jsp"><span class="pull-left">View Details</span></a>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
+            
+                       
+            
+                 
+                          
+ 
             
                 
                 
             </div>
             <!-- /.row -->
+                                          </c:forEach>
+            
         </div>
         <!-- /#page-wrapper -->
 
