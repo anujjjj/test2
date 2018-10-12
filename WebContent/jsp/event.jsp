@@ -32,6 +32,8 @@
 	String ldatereg = (String)request.getAttribute("ldatereg");
 	String info = (String)request.getAttribute("info");
 	String einfo = (String)request.getAttribute("einfo");
+	String logo = (String)request.getAttribute("logo");
+
 	//String interestId = (String)request.getAttribute("interestId");
 
 	%>  
@@ -44,26 +46,27 @@
 	
 	<div id="page-wrapper" style="margin-top: 15px;">
 	<form action="admin">
-                    <div class="jumbotron" style="background-color:white;">
+                    <div class="jumbotron" style="background-color:#eeeeee;">
                     
-                        <div><center><h1><%= eventName%></h1>
-                        <p style="padding: 15px">Start date: <%= startDate %></p>
-                                               <p style="padding: 15px">End date: <%= endDate %></p>
-                                                <p style="padding: 15px">Last date for volunteer: <%= ldatevol %></p>
-                                                <p style="padding: 15px">Last date for registration:<%= ldatereg %></p>
-                                                <% if(info==null) { %>
-                                                		<p style="padding: 15px">Info: <%=einfo %></p><br>
-                                                <% } 
-                                                else {
-                                                %>
-                                             		<p style="padding: 15px">Info: <%=info %></p><br>
-                                             	<%} %>
-                        </center>
+                        <div><center><h1><%= eventName%></h1></center>
+                       <img src="<%=logo %>" alt="photo" height=250px style="float:right; margin-right:10%;" >
+                        <p style="margin-left:10%">Start date: <%= startDate %></p>
+          <p style="margin-left:10%">End date: <%= endDate %></p>
+           <p style="margin-left:10%">Last date for volunteer: <%= ldatevol %></p>
+                <p style="margin-left:10%">Last date for registration:<%= ldatereg %></p>
+                  <% if(info==null) { %>
+                                  <p style="margin-left:10%">Info: <%=einfo %></p><br>
+                  <% } 
+                      else {
+                                %>
+                           	<p style="margin-left:10%">Info: <%=info %></p><br>
+                   <%} %>
+                        
                         
                         <center>
                         <p>
-                               
-           <input type="submit" value="MANAGE">
+                        
+           <a style="width:180px; margin:10px;"   class="btn btn-primary btn-lg" role="button">ORGANISE</a>
                             <a style="width:180px; margin:10px;"   class="btn btn-primary btn-lg" role="button">PARTICIPATE</a>
               			</p>
 						</center>
@@ -72,13 +75,7 @@
 
   </div>
   </div>
- <%--  <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
-        				 url = "jdbc:mysql://localhost:3306/dbms"
-         								user = "root"  password = "123"/>
- 
-     							 <sql:update dataSource = "${snapshot}" var = "result">
-     							    insert into Student_has_Event_has_Interest values("uid","eventId","interestId",1);
-     							 </sql:update>
---%></body>
+     
+</body>
 
 </html>

@@ -61,6 +61,8 @@ public class Event extends HttpServlet  {
 			String  ldatevol= rs.getString("ldatevol");			
 			String  ldatereg= rs.getString("ldatereg");
 			String  einfo = rs.getString("einfo");
+			String  logo = rs.getString("logo");
+
 
 			request.setAttribute("eventName", eventName);				
 			request.setAttribute("eventId", eventId);
@@ -69,6 +71,8 @@ public class Event extends HttpServlet  {
 			request.setAttribute("startDate", startDate);
 			request.setAttribute("endDate", endDate);
 			request.setAttribute("einfo", einfo);
+			request.setAttribute("logo", logo);
+
 			pst.close();
 			//c.close();
 			
