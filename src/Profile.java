@@ -68,17 +68,24 @@ public class Profile extends HttpServlet {
 			String  email= rs.getString("email");			
 			String phone= rs.getString("phone");
 			String password= rs.getString("password");
+			String dob= rs.getString("dob");
+			String adyear= rs.getString("adyear");
+			String branch= rs.getString("branch");
 			session.setAttribute("firstName", firstName);				
 			session.setAttribute("lastName", lastName);
 			session.setAttribute("email", email);
 			session.setAttribute("phone", phone);
 			session.setAttribute("password", password);
+			session.setAttribute("dob", dob);
+			session.setAttribute("adyear", adyear);
+			session.setAttribute("branch", branch);
+
 
 			
 			pst.close();
 			c.close();
 
-		response.sendRedirect("/test2/jsp/profile.jsp");
+		response.sendRedirect("jsp/profile.jsp");
 	      
 		}	
 		

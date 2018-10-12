@@ -18,7 +18,7 @@
          url = "jdbc:mysql://localhost:3306/dbms"
          user = "root" password = "123" />
  
-      <sql:query dataSource = "${snapshot}" var = "result">
+      <sql:query dataSource = "${snapshot}" var = "result4">
          SELECT * from Interest;
       </sql:query>
       
@@ -39,7 +39,7 @@
                         
                         
                          <%for(int i=0;i<1;i++){ %> 
-                          <c:forEach var = "row" items = "${result.rows}">  
+                          <c:forEach var = "row" items = "${result4.rows}">  
                         <li>
                             <a href="#"><i class="${row.logo}"></i>  <c:out value = " ${row.interestsName}"/><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
