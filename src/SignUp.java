@@ -49,6 +49,9 @@ public class SignUp extends HttpServlet {
 		String email=request.getParameter("email");
 		String phone=request.getParameter("phone");
 		String eno=request.getParameter("eno");
+		String dob=request.getParameter("dob");
+		String adyear=request.getParameter("adyear");
+		String branch=request.getParameter("branch");
 		String lname=request.getParameter("lname"); 
 		String[] vals = request.getParameterValues("checkbox");
 		String val;
@@ -68,7 +71,7 @@ public class SignUp extends HttpServlet {
 		
 		String pw_hash = BCrypt.hashpw(pw, BCrypt.gensalt()); 
 		
-		String sql="insert into User(id,email,password,firstName,lastName,phone)" + "values(?,?,?,?,?,?)";
+		String sql="insert into User(id,email,password,firstName,lastName,phone,dob,branch,adyear)" + "values(?,?,?,?,?,?,?,?,?)";
 		PreparedStatement ps = c.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 		ps.setString(4, un);
 		ps.setString(3, pw_hash);
@@ -76,6 +79,9 @@ public class SignUp extends HttpServlet {
 		ps.setString(6, phone);
 		ps.setString(1, eno);
 		ps.setString(5, lname);
+		ps.setString(7, dob);
+		ps.setString(8, branch);
+		ps.setString(9, adyear);
 		
 		
 		PreparedStatement ps1 = c.prepareStatement("Insert into Student values(?)");

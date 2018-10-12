@@ -259,7 +259,10 @@ document.getElementById("defaultOpen").click();
 
 
 </script>
-     
+      <div>
+        <jsp:include page="footer.jsp"></jsp:include>
+    </div>
+	
 </body>
 
 </html>

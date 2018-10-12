@@ -129,7 +129,7 @@ body {font-family: "Lato", sans-serif;}
                                         <th>Last Name</th>
                                         <th>Email id</th>
                                         <th>Phone no</th>
-                                        <th>Yes/No</th>
+                                        <th>Accept | Pending | Reject</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -142,7 +142,9 @@ body {font-family: "Lato", sans-serif;}
 				               <td> <c:out value = "${row.lastName}"/></td>
                               <td> <c:out value = "${row.email}"/></td>
                               <td> <c:out value = "${row.phone}"/></td>
-                               <td><input type="checkbox"></td>
+                               <td><input name="select" type="radio" style="margin-left:15%">
+                                        <input name="select" type="radio" style="margin-left:17%"><input name="select" type="radio" style="margin-left:15%">
+                               </td>
                               
                
         
@@ -153,6 +155,7 @@ body {font-family: "Lato", sans-serif;}
                                  </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                                                        <center><input type="submit" value="Submit"></center>
                             
                           </div>
                         </div>
@@ -180,7 +183,7 @@ body {font-family: "Lato", sans-serif;}
                                         <th>Last Name</th>
                                         <th>Email id</th>
                                         <th>Phone no</th>
-                                        <th>Yes/No</th>
+                                        <th>Accept | Pending | Reject</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -192,8 +195,9 @@ body {font-family: "Lato", sans-serif;}
 				               <td> <c:out value = "${row.lastName}"/></td>
                               <td> <c:out value = "${row.email}"/></td>
                               <td> <c:out value = "${row.phone}"/></td>
-                               <td><input type="checkbox"></td>
-                              
+<td><input name="select" type="radio" style="margin-left:15%">
+                                        <input name="select" type="radio" style="margin-left:17%"><input name="select" type="radio" style="margin-left:15%">
+                               </td>                              
                
         
        			  </c:forEach>
@@ -202,6 +206,7 @@ body {font-family: "Lato", sans-serif;}
                                       </tbody>
                             </table>
                             <!-- /.table-responsive -->
+                               <center><input type="submit" value="Submit"></center>
                             
                           </div>
                         </div>
@@ -311,6 +316,38 @@ body {font-family: "Lato", sans-serif;}
 
 
                           <div class="panel-body">
+                             <form>
+			                            	 <table width="100%" class="table table-striped table-bordered table-hover" id="vol_table">
+			                                <tbody>
+	                                    <tr>
+		                                        <td>Event start date</td>
+			                                        <td><input type="date"></td>
+			                                    </tr>
+		                                    <tr>
+		                                        <td>Event end date</td>
+	                                        <td><input type="date"></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td>Last date for Participating</td>
+			                                        <td><input type="date"></td>
+			                                    </tr>
+			                                    <tr>
+			                                        <td>Last date for Volunteering</td>
+			                                        <td><input type="date"></td>
+			                                    </tr>
+			                                    <tr>
+			                                        <td>Event Information</td>
+			                                        <td>
+			                                        <textarea rows="4" cols="50">
+												</textarea>
+													</td>
+			                                    </tr>
+		                                    
+	                                 </tbody>
+			                            </table>
+			                            		<center><input type="submit" value="Edit Details"></center>
+			                           		 
+			                            </form>
                             
                             
                           </div>
@@ -322,7 +359,10 @@ body {font-family: "Lato", sans-serif;}
 
   
    
-
+ <div>
+        <jsp:include page="footer.jsp"></jsp:include>
+    </div>
+	
 
 
 <script type="text/javascript">

@@ -207,6 +207,9 @@ String pw=(String)session.getAttribute("password");
 	
 	</div>
 	</div>
+	  <div>
+        <jsp:include page="footer.jsp"></jsp:include>
+    </div>
 	
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
