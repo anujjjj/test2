@@ -83,6 +83,7 @@ public class SignUp extends HttpServlet {
 		ps.setString(8, branch);
 		ps.setString(9, adyear);
 		
+		int rowAffected = ps.executeUpdate();
 		
 		PreparedStatement ps1 = c.prepareStatement("Insert into Student values(?)");
 	    ps1.setString(1, eno);
@@ -103,7 +104,7 @@ public class SignUp extends HttpServlet {
 		;
         //pStmt.close();
 		
-		int rowAffected = ps.executeUpdate();
+		
         if(rowAffected == 1)
         {
             // get candidate id

@@ -40,28 +40,14 @@
 
 <style>
     
-	.list-group-horizontal .list-group-item {
-		display: inline-block;
-	}
-	
-	.list-group-horizontal .list-group-item {
-		margin-bottom: 0;
-		margin-left:-4px;
-		margin-right: 0;
-	}
-	
-	.list-group-horizontal .list-group-item:first-child {
-		border-top-right-radius:0;
-		border-bottom-left-radius:4px;
-	}
-	
-	.list-group-horizontal .list-group-item:last-child {
-		border-top-right-radius:4px;
-		border-bottom-left-radius:0;
-	}
 
     h4{
         padding-top: 10px;
+    }
+    
+    body
+    {
+       background-color:white;
     }
   
 
@@ -92,7 +78,9 @@ $(document).ready(function() {
 </script>
 
 <body>
-  
+    
+
+	
     
     <div>
         <jsp:include page="header.jsp"></jsp:include>
@@ -101,9 +89,6 @@ $(document).ready(function() {
     <div>
         <jsp:include page="navbar.jsp"></jsp:include>
     </div>
-	
-	
-	
 
 <% 
 String firstName = (String)session.getAttribute("firstName");
@@ -113,44 +98,56 @@ String phone=(String)session.getAttribute("phone");
 String email=(String)session.getAttribute("email");
 String username=(String)session.getAttribute("username");
 String pw=(String)session.getAttribute("password");
-String dob=(String)session.getAttribute("dob");
-String adyear=(String)session.getAttribute("adyear");
-String branch=(String)session.getAttribute("branch");
 
 %>
 
-<div style="padding-top: 1%;"></div>
+<hr>
+
 
 <div class="container bootstrap snippet" id="page-wrapper">
-    <div class="row">
-  		<div class="col-sm-3"><!--left col-->
+    <div class="row" style="background-color:white;">
+  		<div class="col-sm-3" style="background-color:white;"><!--left col-->
               
-
-      <div class="text-center" style="margin-top:50%">
+    
+      <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload" style="padding-left: 10%">
+        
+        <input type="file" class="text-center center-block file-upload" style="padding-left: 10%; margin-top:5%; ">
       </div></hr><br>
 	  
+	  
+	  <ul class="list-group">
+            <li class="list-group-item">Interests</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Dance</strong></span> <input type="checkbox"></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Drama</strong></span> <input type="checkbox"></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Music</strong></span> <input type="checkbox"></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Sports</strong></span> <input type="checkbox"></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Painting</strong></span> <input type="checkbox"></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Photography</strong></span> <input type="checkbox"></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Set & Decoration</strong></span> <input type="checkbox"></li>          
+          </ul> 
+
                
         
         
         </div><!--/col-3-->
     	<div class="col-sm-9">
-            
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Personal Details</a></li>   
+              </ul>
 
               
           <div class="tab-content">
             <div class="tab-pane active" id="home">
                 <hr>
-                  <form class="form" action="/test2/ProfileUpdate" method="post">
+                  <form class="form" >
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                       
                           
                               <label for="first_name"><h4>First name </h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="${firstName }" disabled>
+                              <input type="text" class="form-control" name="first_name" id="first_name" value="${firstName }" disabled>
                           </div>
                       </div>
                       <div class="form-group">
@@ -160,36 +157,11 @@ String branch=(String)session.getAttribute("branch");
                               <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="${lastName }"  disabled>
                           </div>
                       </div>
-					  
-					  
-					  <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Date Of Birth</h4></label>
-                              <input type="text" class="form-control" name="dob" id="mobile" placeholder="Date Of Birth" value="${dob }" disabled>
-                          </div>
-                      </div>
-					  
-					  
-					  <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Year Of Admission</h4></label>
-                              <input type="text" class="form-control" name="admission_year" id="mobile" placeholder="Year Of Admission" value="${adyear }" disabled>
-                          </div>
-                      </div>
-					  
-					  
-					  <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Department</h4></label>
-                              <input type="text" class="form-control" name="dob" id="dept" placeholder="Department" value="${branch }" disabled>
-                          </div>
-                      </div>
-
+          
                       
-                      <div class="form-group">          
-					  <div class="col-xs-6">
+                      <div class="form-group">          <div class="col-xs-6">
                               <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number" value="${phone }">
+                              <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter Phone No." value="${phone }">
                           </div>
                       </div>
                       
@@ -197,7 +169,7 @@ String branch=(String)session.getAttribute("branch");
                       <div class="form-group"> 
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" value="${email }" >
+                              <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email Address" value="${email }" >
                           </div>
                       </div>
           
@@ -205,31 +177,16 @@ String branch=(String)session.getAttribute("branch");
                       <div class="form-group">
                           <div class="col-xs-6">
                              <label for="mobile"><h4>Enrollment Number</h4></label>
-                              <input type="text" class="form-control" name="eno" id="mobile" placeholder="Enrollment Number" value="${username }" disabled>
+                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Enrollment Number" value="${username }" disabled>
                           </div>
                       </div>
-					  
-					  
-					<!--  <div class="form-group">
-                          <div class="col-md-12">
-                             <label><h4>Interests</h4></label>
-							 <div class="list-group list-group-horizontal">
-										  <ul class="list-group">
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Dance</strong></span><input type="checkbox" style="margin-left:8px"> </li>
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Music</strong></span> <input type="checkbox"style="margin-left:8px"></li>
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Photography</strong></span> <input type="checkbox"style="margin-left:8px"></li>
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Sets & Decoration</strong></span><input type="checkbox"style="margin-left:8px"> </li>
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Drama</strong></span><input type="checkbox"style="margin-left:8px"> </li>
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Sports</strong></span> <input type="checkbox"style="margin-left:8px"></li>
-											<li class="list-group-item text-right"><span class="pull-left"><strong>Painting</strong></span> <input type="checkbox"style="margin-left:8px"></li>
-										  </ul> 
-
-							 </div>
-                          </div>
-                      </div>-->
                       
-                      <div class="form-group"></div>
-					  
+                      
+                      <div class="form-group">
+               
+                      </div>
+                      
+                    
                       
                       <div class="form-group">
                            <div class="col-xs-12">
@@ -250,9 +207,6 @@ String branch=(String)session.getAttribute("branch");
 	
 	</div>
 	</div>
-	<div>
-        <jsp:include page="footer.jsp"></jsp:include>
-    </div>
 	
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
