@@ -64,7 +64,7 @@
                 <a class="navbar-brand" href="/test2/jsp/dashboard.jsp">PIConnecT</a>
             </div>
             <!-- /.navbar-header -->
-            <i><label style="width:87%; margin-right:1%; margin-top:1%; font-size:100%; text-align:right;">Welcome <%= firstName %></label></i>
+            <i><label style="width:80%; margin-right:0%; margin-top:1%; font-size:100%; text-align:right;">Welcome <%= firstName %></label></i>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

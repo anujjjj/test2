@@ -25,6 +25,7 @@
 	HttpSession Session = request.getSession(true);	
  String uid=(String)Session.getAttribute("username"); 
 String interestid = request.getParameter("Interest_idInterest");
+System.out.println(interestid);
  	String eventId =request.getParameter("eventId"); 
 	String eventName = (String)request.getAttribute("eventName");
 	String startDate = (String)request.getAttribute("startDate");
@@ -45,12 +46,7 @@ String interestid = request.getParameter("Interest_idInterest");
 	<jsp:include page="navbar.jsp"></jsp:include>
 	<div id="wrapper">
 	
-	<script>
-		func1(String uid, String eventid,String interestid , int p, int r ){
-						
-			 Insert(uid1,  eventid, interestid ,  p,  r);
-		}
-	</script>
+
 		
 		<%! 
 					public int Insert(String uid, String eventid,String interestid , int p, int r) {			
@@ -174,23 +170,44 @@ String interestid = request.getParameter("Interest_idInterest");
 
 					<center>
 					
-
-							<!-- 
-      							  <a style="width:180px; margin:10px;" id="Manage"  class="btn btn-primary btn-lg" onClick = <% Insert(uid,eventId,interestid,0,2); %>  role="button">MANAGE</a>
-	                            <a style="width:180px; margin:10px;" id="Participate"  class="btn btn-primary btn-lg" onClick = <% Insert(uid,eventId,interestid,1,2); %>  role="button">PARTICIPATE</a>
-						 -->
-
-							<button style="margin-right : 30px" class="btn btn-primary btn-lg" value="Manage" name="1" id="1"
+								<%request.setAttribute("interest", interestid); %>
+							 	<%System.out.println(interestid);  %>
+							 	<% System.out.println("interestid");%>
+							 	
+							 	
+							 	
+      							  <a style="width:180px; margin:10px;" id="Manage"  class="btn btn-primary btn-lg" href="/test2/Manage?eventId=${eventId}&interestId=<%=interestid %>&manpar=0"    role="button">MANAGE</a>
+	                           		<a style="width:180px; margin:10px;" id="Participate"  class="btn btn-primary btn-lg" href="/test2/Manage?eventId=${eventId}&interestId=<%=interestid %>&manpar=1"  role="button">PARTICIPATE</a>
+						<!-- 		 								
+							<form action="/test2/Manage?eventId=${eventId}&interestId=${interestid}"  >
+			
+						  	<button style="margin-right : 30px" class="btn btn-primary btn-lg" value="Manage" name="1" id="1"
 							 onclick="func1(uid,eventId,interestid,0,2)" >Manage</button>							
+							</form>
 							
 							<button class="btn btn-lg" id="2" name="2" id="2"
 								value="Participate" 
 								onclick="func(uid,eventId,interestid,1,2)" 
-								>Participate</button>						
+								>Participate</button>
+							 -->					
 					</center>
 				</div>
+				<%String error=(String)session.getAttribute("error"); %>
+							 	<%
+							 		if(error!=null) {
+							 			
+							 	%>
+							 	<script>
+							 		confirm(<%=error %>);
+							 	</script>
+							 	<center><p><%=error %></p></center>
+							 	<%	
+							 	session.removeAttribute("error");
+							 		}
+							 	%>
 			</div>
 		</div>
+	
 	</div>
 	<div>
 		<jsp:include page="footer.jsp"></jsp:include>
