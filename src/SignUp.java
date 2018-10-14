@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -112,7 +113,11 @@ public class SignUp extends HttpServlet {
             if(rs.next())
                 CandidateId = rs.getString(1);
             	c.close();
-            	response.sendRedirect("signup_success.jsp");
+  	
+            	RequestDispatcher rd = request.getRequestDispatcher("/jsp/signup_success.jsp");
+                rd.forward(request, response); 
+                c.close();
+            	//response.sendRedirect("signup_success.jsp");
         }
 		
 		} catch (ClassNotFoundException | SQLException e) {

@@ -82,26 +82,22 @@ body {font-family: "Lato", sans-serif;}
     
 <body>
 
+
     
        <jsp:include page="header.jsp"></jsp:include>
 
 	<jsp:include page="navbar.jsp"></jsp:include>
-
+	
+	<%
+		String eventId = request.getParameter("eventId");
+	String idInterest = request.getParameter("idInterest");
+	%>
+         
 <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
          url = "jdbc:mysql://localhost:3306/dbms"
          user = "root"  password = "123"/>
-
-        
- 
-    
-            
-        
-         
-
 	
-	 <sql:query dataSource = "${snapshot}" var = "result1">
-             SELECT User.firstName,User.lastName,User.email,User.phone, Student_has_Event_has_Interest.Event_has_Interest_Event_eventId  FROM Student_has_Event_has_Interest INNER JOIN User ON Student_has_Event_has_Interest.Student_id=User.id where Student_has_Event_has_Interest.managedparticipate=0 and Student_has_Event_has_Interest.reqacceptdecline=2;
-         </sql:query>
+             
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -110,6 +106,7 @@ body {font-family: "Lato", sans-serif;}
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            
             <div class="row" >
                         <label for="my_checkbox">
                            
@@ -136,35 +133,74 @@ body {font-family: "Lato", sans-serif;}
                                     <tr class="odd gradeX">
                                    
          
-         <c:forEach var = "row" items = "${result1.rows}">
-            <tr>
-				               <td> <c:out value = "${row.firstName}"/></td>
-				               <td> <c:out value = "${row.lastName}"/></td>
-                              <td> <c:out value = "${row.email}"/></td>
-                              <td> <c:out value = "${row.phone}"/></td>
-                               <td><input name="select" type="radio" style="margin-left:15%">
-                                        <input name="select" type="radio" style="margin-left:17%"><input name="select" type="radio" style="margin-left:15%">
-                               </td>
-                              
-               
-        
-       			  </c:forEach>
+<% 
+
+try {
+							Class.forName("com.mysql.jdbc.Driver");
+						 // loads driver
+						
+						Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123"); // gets a new connection
+						
+						
+						PreparedStatement ps1 = c.prepareStatement("select u.firstName,u.lastName,u.email,u.phone,s.Event_has_Interest_Event_eventId,s.Event_has_Interest_Interest_idInterest from Student_has_Event_has_Interest as s inner join User as u on s.Student_id=u.id where s.Event_has_Interest_Event_eventId=? and s.Event_has_Interest_Interest_idInterest=? and s.managedparticipate = 0 and s.reqacceptdecline=2");
+						ps1.setString(1, eventId);
+						ps1.setString(2, idInterest);
+						
+						
+						ResultSet rs1 = ps1.executeQuery();
+				
+								
+						while(rs1.next()) {
+							String  firstName= rs1.getString("firstName");
+							String  lastName= rs1.getString("lastName");
+							String  phone= rs1.getString("phone");			
+							String  email= rs1.getString("email");			
+							
+%>
+				            <tr>
+				            					
+								               <td>${firstName}</td>
+								               <td> ${lastName}</td>
+				                              <td>${email}</td>
+				                              <td>${phone}</td>
+				                               <td><input name="select" type="radio" style="margin-left:15%">
+				                                        <input name="select" type="radio" style="margin-left:17%">
+				                                        <input name="select" type="radio" style="margin-left:15%">
+				                               </td>				               				
+							
+<% 
+							ps1.close();
+						
+//							response.sendRedirect("./jsp/event.jsp");
+						}	
+						
+	
+						c.close();
+}	catch (ClassNotFoundException | SQLException e) {
+	
+	// TODO Auto-generated catch block				
+	e.printStackTrace();
+}	
+
+    
+            
+						%>
+
                                     </tr>
                                     
                                    
                                  </tbody>
                             </table>
                             <!-- /.table-responsive -->
-                                                        <center><input type="submit" value="Submit"></center>
+                        <center><input type="submit" value="Submit"></center>
                             
                           </div>
                         </div>
 					</div>
             </div>
             
-             <sql:query dataSource = "${snapshot}" var = "result">
-             SELECT User.firstName,User.lastName,User.email,User.phone, Student_has_Event_has_Interest.Event_has_Interest_Event_eventId  FROM Student_has_Event_has_Interest INNER JOIN User ON Student_has_Event_has_Interest.Student_id=User.id where Student_has_Event_has_Interest.managedparticipate=1 and Student_has_Event_has_Interest.reqacceptdecline=2;
-         </sql:query>
+        
+            
             <div class="row">
                         <label for="my_checkbox1">
 						<h4 style="padding-left:15px;"><span toggle="#my_checkbox1" class="fa fa-plus-circle field-icon toggle-my_checkbox1">   Participants</span></h4>
@@ -189,24 +225,70 @@ body {font-family: "Lato", sans-serif;}
                                 <tbody>
                                     <tr class="odd gradeX">
          
-         <c:forEach var = "row" items = "${result.rows}">
-            <tr>
-				               <td> <c:out value = "${row.firstName}"/></td>
-				               <td> <c:out value = "${row.lastName}"/></td>
-                              <td> <c:out value = "${row.email}"/></td>
-                              <td> <c:out value = "${row.phone}"/></td>
-<td><input name="select" type="radio" style="margin-left:15%">
-                                        <input name="select" type="radio" style="margin-left:17%"><input name="select" type="radio" style="margin-left:15%">
-                               </td>                              
-               
-        
-       			  </c:forEach>
+     <% 
+
+try {
+							Class.forName("com.mysql.jdbc.Driver");
+						 // loads driver
+						
+						Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms", "root", "123"); // gets a new connection
+						
+						
+						PreparedStatement ps2 = c.prepareStatement("select u.firstName,u.lastName,u.email,u.phone,s.Event_has_Interest_Event_eventId,s.Event_has_Interest_Interest_idInterest from Student_has_Event_has_Interest as s inner join User as u on s.Student_id=u.id where s.Event_has_Interest_Event_eventId=? and s.Event_has_Interest_Interest_idInterest=? and s.managedparticipate = 1 and s.reqacceptdecline=2");
+						ps2.setString(1, eventId);
+						ps2.setString(2, idInterest);
+						
+						
+						ResultSet rs2 = ps2.executeQuery();
+				
+							 
+					
+				
+						while(rs2.next()) {
+							String  firstName= rs2.getString("firstName");
+							String  lastName= rs2.getString("lastName");
+							String  phone= rs2.getString("phone");			
+							String  email= rs2.getString("email");			
+							
+%>
+          <tr>
+				            					
+								               <td>${firstName}</td>
+								               <td> ${lastName}</td>
+				                              <td>${email}</td>
+				                              <td>${phone}</td>
+				                               <td><input name="select" type="radio" style="margin-left:15%">
+				                                        <input name="select" type="radio" style="margin-left:17%">
+				                                        <input name="select" type="radio" style="margin-left:15%">
+				                               </td>
+				               				
+
+							
+ <% 
+							ps2.close();
+						
+//							response.sendRedirect("./jsp/event.jsp");
+						}	
+						
+	
+						c.close();
+	}	catch (ClassNotFoundException | SQLException e) {
+	
+	// TODO Auto-generated catch block				
+	e.printStackTrace();
+}	
+
+    
+            
+						%>
+
                                     </tr>
+                                    
                                    
                                       </tbody>
                             </table>
                             <!-- /.table-responsive -->
-                               <center><input type="submit" value="Submit"></center>
+                               <center><input type="submit"  value="Submit"></center>
                             
                           </div>
                         </div>
@@ -218,6 +300,10 @@ body {font-family: "Lato", sans-serif;}
                         <label for="my_checkbox2"> 
 						<h4 style="padding-left:15px;"><span toggle="#my_checkbox2" class="fa fa-plus-circle field-icon toggle-my_checkbox2">   Volunteers final list</span></h4>
 					    </label>
+					    	 <sql:query dataSource = "${snapshot}" var = "result2">
+             select u.firstName,u.lastName,u.email,u.phone,s.Event_has_Interest_Event_eventId,s.Event_has_Interest_Interest_idInterest from Student_has_Event_has_Interest as s inner join User as u on s.Student_id=u.id where s.Event_has_Interest_Event_eventId="abhi" and s.Event_has_Interest_Interest_idInterest="dram" and s.managedparticipate = 0 and s.reqacceptdecline=1;
+             
+                   </sql:query>
 
 					<input type="checkbox" id="my_checkbox2" style="display:none">
 					<div id="hidden">
@@ -235,21 +321,21 @@ body {font-family: "Lato", sans-serif;}
                                         
                                     </tr>
                                 </thead>
+                         
                                 <tbody>
+                         	
                                     <tr class="odd gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                            <c:forEach var = "row2" items = "${result2.rows}" >
+                                       <td> <c:out value = "${row2.firstName}"/></td>
+				               <td> <c:out value = "${row2.lastName}"/></td>
+                              <td> <c:out value = "${row2.email}"/></td>
+                              <td> <c:out value = "${row2.phone}"/></td>
+							
+        
+       			  </c:forEach>
                                         
                                     </tr>
-                                    <tr class="even gradeC">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
-                                    </tr>
+                                   
                                  </tbody>
                             </table>
                             <!-- /.table-responsive -->
@@ -263,6 +349,11 @@ body {font-family: "Lato", sans-serif;}
                         <label for="my_checkbox3">
 						<h4 style="padding-left:15px;"><span toggle="#my_checkbox3" class="fa fa-plus-circle field-icon toggle-my_checkbox3">   Participants final list</span></h4>
 					    </label>
+					     <sql:query dataSource = "${snapshot}" var = "result3">
+             select u.firstName,u.lastName,u.email,u.phone,s.Event_has_Interest_Event_eventId,s.Event_has_Interest_Interest_idInterest from Student_has_Event_has_Interest as s inner join User as u on s.Student_id=u.id where s.Event_has_Interest_Event_eventId="abhi" and s.Event_has_Interest_Interest_idInterest="dram" and s.managedparticipate = 1 and s.reqacceptdecline=1;
+             
+                   </sql:query>
+					    
 
 					<input type="checkbox" id="my_checkbox3" style="display:none">
 					<div id="hidden">
@@ -282,19 +373,16 @@ body {font-family: "Lato", sans-serif;}
                                 </thead>
                                 <tbody>
                                     <tr class="odd gradeX">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
+                            <c:forEach var = "row3" items = "${result3.rows}" >
+                                       <td> <c:out value = "${row3.firstName}"/></td>
+				               <td> <c:out value = "${row3.lastName}"/></td>
+                              <td> <c:out value = "${row3.email}"/></td>
+                              <td> <c:out value = "${row3.phone}"/></td>
+							
+        
+       			  </c:forEach>
                                     </tr>
-                                    <tr class="even gradeC">
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        
-                                    </tr>
+                                  
                                  </tbody>
                             </table>
                             <!-- /.table-responsive -->

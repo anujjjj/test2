@@ -32,7 +32,7 @@
          url = "jdbc:mysql://localhost:3306/dbms"
          user = "root"  password = "123" />
  <sql:query dataSource = "${snapshot}" var = "result">
-         select m.eventName,d.interestsName from Admin s inner join Event m on s.eventId = m.eventId inner join Interest d on  d.idInterest = s.idInterest where s.id=?
+         select m.eventId,d.idInterest, m.eventName,d.interestsName from Admin s inner join Event m on s.eventId = m.eventId inner join Interest d on  d.idInterest = s.idInterest where s.id=?
 
                   <sql:param value = "${sessionScope.username}" />
          
@@ -48,13 +48,13 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div> 
-
+			<div class="row"> 
+                <br/><br/><br/>
 
                                       <c:forEach var = "row" items = "${result.rows}">    
 
-                   
-            <div class="row"> 
-                <br/><br/><br/>
+                
+            
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -72,7 +72,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <a href="/test2/jsp/admin_event.jsp"><span class="pull-left">View Details</span></a>
+                                <a href="/test2/jsp/admin_event.jsp?eventId=${row.eventId}&Interest_idInterest=${row.idInterest}"><span class="pull-left">View Details</span></a>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>

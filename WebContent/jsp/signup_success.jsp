@@ -7,9 +7,12 @@
 <title>PIConnecT</title>
 </head>
 <body>
+	confirm("You have signed up successfully.")
 	<%
-	out.println("You have registered successfully <a href=\"login.jsp\">Login</a>");
+	//out.println("You have registered successfully <a href=\"login.jsp\">Login</a>");
+	
     response.sendRedirect("login.jsp");
 	%>
+	
 </body>
 </html>
