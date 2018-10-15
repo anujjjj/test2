@@ -71,7 +71,17 @@
          url = "jdbc:mysql://localhost:3306/dbms"
          user = "root"  password = "123" />
  
+     
+ 
+     <!--   <table border = "1" width = "100%">
+         <tr>
+            <th>Event Name</th>
 
+            <th>Event info</th>
+         </tr>
+              </table>
+         -->
+         
         
    <div id="wrapper">
 
@@ -93,39 +103,33 @@
                            <sql:query dataSource = "${snapshot}" var = "result2">
          SELECT einfo,eventId,eventName from Event where DateDiff(startDate,curdate()) between 0 and 120;
       </sql:query>
-                         <% for(int i=0;i<1;i++){ %> 
-                          <c:forEach var = "row" items = "${result2.rows}">                                  
+                                                    
                        
-                            <ul class="timeline" >
-                                        
-                                <a href="/test2/Event?eventId=${row.eventId}" >	                        
-                                <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
-                                
-                                    <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </a>
-                                    </div>                                    
-                                    <div class="timeline-panel" style="width: 93%;" >
-                                        <div class="timeline-heading">
-     		
-                                            <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
-                                        </div>
-                                        <div class="timeline-body">
-        
-      
-           
-
-     
-                                            <p>  <c:out value = "${row.einfo}"/></p>
-                                        </div>
-                                    </div>
-                                    
-                                </li>
-								</a>
-                               
-                            </ul>
-                                                    </c:forEach>
+                            
+                        <%for(int i=0;i<1;i++){ %> 
+                          <c:forEach var = "row" items = "${result2.rows}">                                  
+				 <div class="col-lg-4" style="width:100%">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <c:out value = "${row.eventName}"/>
+                        </div>
+                        <div class="panel-body">
+                            <p>  <c:out value = "${row.einfo}"/></p>
+                            
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/test2/Event?eventId=${row.eventId}" >Know More >>></a>
+                        </div>
+                    </div>
+                </div>
+                
+                </c:forEach>
  
-                                                   <%  }%>
+                                                   <%  }%>                           
+                                                   
+                                                   
+                                                   
+                                                   
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -144,39 +148,24 @@
       </sql:query>
                          <%for(int i=0;i<1;i++){ %> 
                           <c:forEach var = "row" items = "${result1.rows}">                                  
-                       
-                            <ul class="timeline" >
-                            
-                                
-                                <a href="/test2/Event?eventId=${row.eventId}&Interest_idInterest=${row.Interest_idInterest}" >
-                                <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
-                                    
-                                    <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </a> 
-                                    </div>
-                                    
-                                    <div class="timeline-panel" style="width: 93%;" >
-                                    
-                                        <div class="timeline-heading">
-     									     									
-                                                <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
-                                           
-                                        </div>                                        
-                                        <div class="timeline-body">
-     
-                                            <p>  <c:out value = "${row.einfo}"/></p>
-                                            <p>  <c:out value = "${row.info}"/></p>
-                                        </div>
-                                    </div>                                   
-                                   	</a>
-                                </li>
-								</a>
-                               
-                            </ul>
-                                                    </c:forEach>
+				 <div class="col-lg-4" style="width:100%">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <c:out value = "${row.eventName}"/>
+                        </div>
+                        <div class="panel-body">
+                            <p>  <c:out value = "${row.einfo}"/></p>
+                            <p>  <c:out value = "${row.info}"/></p>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/test2/Event?eventId=${row.eventId}&Interest_idInterest=${row.Interest_idInterest}">Know More >>></a>
+                        </div>
+                    </div>
+                </div>
+                
+                </c:forEach>
  
                                                    <%  }%>
-                            
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -193,36 +182,31 @@
                         <sql:query dataSource = "${snapshot}" var = "result">
          SELECT einfo,eventName,eventId from Event;
       </sql:query>
-                         <%for(int i=0;i<1;i++){ %> 
+                        
+                                                   
+                      <%for(int i=0;i<1;i++){ %> 
                           <c:forEach var = "row" items = "${result.rows}">                                  
-                       
-                            <ul class="timeline" >
-                                <a href="/test2/Event?eventId=${row.eventId}" >
-                                <li class="timeline-inverted" style="display: inline; padding-left: 55px;">
-                                    <div class="timeline-badge success" style="margin-top: 20px;"><i class="fa fa-graduation-cap"></i>
-                                    </a>
-                                    </div>
-                                    <div class="timeline-panel" style="width: 93%;" >
-                                        <div class="timeline-heading">
-     		
-                                            <h4 class="timeline-title">  <c:out value = "${row.eventName}"/></h4>
-                                        </div>
-                                        <div class="timeline-body">
-        
-      
-           
-
-     
-                                            <p>  <c:out value = "${row.einfo}"/></p>
-                                        </div>
-                                    </div>
-                                </li>
-
-                               
-                            </ul>
-                                                    </c:forEach>
+				 <div class="col-lg-4" style="width:100%">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                           <c:out value = "${row.eventName}"/>
+                        </div>
+                        <div class="panel-body">
+                            <img alt="photo" src="/test2/photos/abhi.jpg" height=150px style="float:right; margin-right:10%;">
+                            <p>  <c:out value = "${row.einfo}"/></p>
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/test2/Event?eventId=${row.eventId}" >Know More >>></a>
+                        </div>
+                    </div>
+                </div>
+                
+                </c:forEach>
  
-                                                   <%  }%>
+                                                   <%  }%>                 
+                                                   
+                                                   
+                                                   
                             
 						</div>
                         <!-- /.panel-body -->
@@ -259,10 +243,7 @@ document.getElementById("defaultOpen").click();
 
 
 </script>
-      <div>
-        <jsp:include page="footer.jsp"></jsp:include>
-    </div>
-	
+     
 </body>
 
 </html>

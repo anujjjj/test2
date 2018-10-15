@@ -43,8 +43,8 @@ public class Manage extends HttpServlet {
 		String uid = (String)session.getAttribute("username");
 		
 		System.out.println(eventId);
-		System.out.println(interestId);
 		
+		System.out.println(interest);
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		 // loads driver
@@ -65,7 +65,8 @@ public class Manage extends HttpServlet {
 			 System.out.println("DOne");
 			 c.close();
 			 session.setAttribute("error", "The request has been recieved");
-			 response.sendRedirect("/test2/Event?eventId="+eventId+"&Interest_idInterest="+interestId);
+			 response.sendRedirect("/test2/Event?eventId="+eventId+"&Interest_idInterest="+interestId+"");
+
 		}
 		
 		else {

@@ -74,11 +74,7 @@ public class Event extends HttpServlet  {
 			request.setAttribute("logo", logo);
 
 			pst.close();
-			//c.close();
-			
-	      //  RequestDispatcher rd = request.getRequestDispatcher("/jsp/event.jsp");
-	      //  rd.forward(request, response);
-//			response.sendRedirect("./jsp/event.jsp");
+		
 		}	
 		
 		if(rs1.next()) {

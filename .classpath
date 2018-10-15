@@ -13,9 +13,9 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/s/Downloads/mysql-connector-java-8.0.12/mysql-connector-java-8.0.12.jar"/>
-	<classpathentry kind="lib" path="/home/s/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="/home/s/servlet-api.jar"/>
-	<classpathentry kind="lib" path="/home/s/Downloads/jbcrypt-0.3m.jar"/>
+	<classpathentry kind="lib" path="/home/amol/Downloads/jbcrypt-0.3m.jar"/>
+	<classpathentry kind="lib" path="/home/amol/Downloads/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/amol/Downloads/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="/home/amol/apache-tomcat-8.5.34/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
