@@ -72,7 +72,7 @@
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <a href="/test2/jsp/admin_event.jsp?eventId=${row.eventId}&Interest_idInterest=${row.idInterest}"><span class="pull-left">View Details</span></a>
+                                <a href="/test2/jsp/admin_event.jsp?eventId=${row.eventId}&idInterest=${row.idInterest}"><span class="pull-left">View Details</span></a>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
